@@ -1,0 +1,251 @@
+<h4 *ngIf="hospitals?.length == 1">Book appointments for {{hospitals[0].name}}</h4>
+<h4 *ngIf="hospitals?.length > 1">Book appointments</h4>
+<hr>
+<form #forma="ngForm">
+  <div class="form-row">
+    <div class="col-md-6">
+      <div class="form-group col-md-12" *ngIf="hospitals?.length > 1">
+        <label>Hospital</label>
+        <select name="hospital" class="form-control" [(ngModel)]=searchterms.hospitalId>
+          <option value="">
+            Select a hospital
+          </option>
+          <option *ngFor="let hospital of hospitals" [value]="hospital.id">{{ hospital.name }}</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label>Source of funding</label>
+          <div class="input-group mb-3">
+            <select name="payor" class="form-control" [(ngModel)]=searchterms.payorId>
+              <option *ngFor="let payor of payors" [value]="payor.id">{{ payor.name }}</option>
+            </select>
+            <div class="input-group-append">
+              <button class="input-group-text" (click)="searchterms.payorId = null">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label>Department</label>
+          <div class="input-group mb-3">
+            <select name="department" class="form-control" [(ngModel)]=searchterms.orgId [disabled]="!searchterms.payorId" (ngModelChange)="checkDepartment(); searchTreatments($event)">
+              <option *ngFor="let department of departments" [value]="department.id">{{ department.name }}</option>
+            </select>
+            <div class="input-group-append">
+              <button class="input-group-text" (click)="searchterms.orgId = null">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label>Consultant</label>
+          <div class="input-group mb-3">
+            <select name="consultant" class="form-control" [(ngModel)]=searchterms.doctorId [disabled]="!searchterms.payorId || !searchterms.orgId || !doctors"
+              (ngModelChange)="searchSpecialties()">
+              <option *ngFor="let doctor of doctors" [value]="doctor.id">{{ doctor.name }}</option>
+            </select>
+            <div class="input-group-append">
+              <button class="input-group-text" (click)="searchterms.doctorId = null">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-6">
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label>Consultants' Specialty</label>
+          <div class="input-group mb-3">
+            <select name="specialty" class="form-control" [(ngModel)]=searchterms.specialtyId [disabled]="!searchterms.payorId || !searchterms.orgId"
+              (ngModelChange)="searchDoctors()">
+              <option value="">
+                Select a specialty
+              </option>
+              <option *ngFor="let specialty of specialties" [value]="specialty.id">{{ specialty.name }}</option>
+            </select>
+            <div class="input-group-append">
+              <button class="input-group-text" (click)="searchterms.specialtyId = null">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label>Outpatient clinic</label>
+          <div class="input-group mb-3">
+            <select name="treatment" class="form-control" [(ngModel)]=searchterms.treatmentId [disabled]="!searchterms.payorId || !searchterms.orgId">
+              <option *ngFor="let treatment of treatments" [value]="treatment.id">{{ treatment.name }}</option>
+            </select>
+            <div class="input-group-append">
+              <button class="input-group-text" (click)="searchterms.treatmentId = null">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label>Visit Type</label>
+          <div class="input-group mb-3">
+            <select name="visitType" class="form-control" [(ngModel)]=searchterms.visitTypeId [disabled]="!searchterms.payorId || !searchterms.orgId">
+              <option *ngFor="let visitType of visitTypes" [value]="visitType.id">{{ visitType.name }}</option>
+            </select>
+            <div class="input-group-append">
+              <button class="input-group-text" (click)="searchterms.visitTypeId = null">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label>Date</label>
+          <input class="form-control" type="date" [value]="searchterms.date" name="date" [(ngModel)]=searchterms.date [disabled]="!searchterms.payorId || !searchterms.orgId">
+        </div>
+
+
+        <div class="col-md-6">
+          <label>Part of the day</label>
+          <div class="input-group mb-3">
+            <select name="schedule" class="form-control" [(ngModel)]=searchterms.scheduleId [disabled]="!searchterms.payorId || !searchterms.orgId">
+              <option *ngFor="let schedule of schedules.options" [value]="schedule.id">{{ schedule.name }}</option>
+            </select>
+            <div class="input-group-append">
+              <button class="input-group-text" (click)="searchterms.scheduleId = null">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <button type="submit" class="btn btn-main-color btn-block" [disabled]="!searchterms.payorId || !searchterms.orgId" (click)="searchFreeSlots()">
+        Search
+      </button>
+    </div>
+    <div class="col-md-6">
+      <button class="btn btn-secondary-color btn-block" [disabled]="!searchterms.payorId || !searchterms.orgId" (click)="resetSearchterms()">
+        Reset
+      </button>
+    </div>
+  </div>
+</form>
+<div class="alert alert-warning" role="alert" *ngIf="_databaseService.alert">
+  {{_databaseService.alert}}
+</div>
+
+
+<div *ngIf="freeslots">
+  <div id="no-more-tables">
+    <h4>Select your appointment</h4>
+    <table class="col-md-12 table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Hour</th>
+          <th scope="col">Consultant</th>
+          <th scope="col">Department</th>
+          <th scope="col">Visit type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let freeslot of freeslots" data-toggle="modal" data-target="#FreeSlotModal" (click)="sendFreeslot(freeslot)">
+          <th>{{freeslot.date}}</th>
+          <th>{{freeslot.hour}}</th>
+          <th>{{freeslot.doctor.name}}</th>
+          <th>{{freeslot.department.name}}</th>
+          <th>{{freeslot.schedulingType.name}}</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- The FreeSlot Modal -->
+<div class="modal fade" id="FreeSlotModal" *ngIf="selectedFreeslot">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Your selection</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="card">
+          <div class="card-header">
+            {{selectedFreeslot.date}} | {{selectedFreeslot.hour}}
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{selectedFreeslot.doctor.name}}</h5>
+            <p class="card-text">Department: {{selectedFreeslot.department.name}}
+              <br/> Speciality: {{selectedFreeslot.treatment.name}}
+              <br/> Visit Type: {{selectedFreeslot.schedulingType.name}}
+            </p>
+            <div class="row" *ngIf="!patient">
+              <div class="form-group col-md-4">
+                <button class="btn btn-main-color btn-block" data-toggle="modal" data-target="#LoginModal" data-dismiss="modal">
+                  Login
+                </button>
+              </div>
+              <div class="form-group col-md-4">
+                <button class="btn btn-main-color btn-block" data-dismiss="modal" (click)="goRegister()">
+                  Register
+                </button>
+              </div>
+              <div class="col-md-4">
+                <button class="btn btn-secondary-color btn-block" data-dismiss="modal">
+                  Cancel
+                </button>
+              </div>
+            </div>
+            <div class="row" *ngIf="patient">
+              <div class="form-group col-md-6">
+                <button type="submit" class="btn btn-main-color btn-block" (click)="bookSlot(selectedFreeslot)">
+                  Book
+                </button>
+              </div>
+              <div class="col-md-6">
+                <button class="btn btn-secondary-color btn-block" data-dismiss="modal">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

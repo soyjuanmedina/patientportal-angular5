@@ -1,0 +1,79 @@
+<nav class="navbar navbar-expand-lg navbar-main-color">
+  <img [src]= LOGO class="d-inline-block align-top" alt="">
+  <div class="navbar-collapse" id="LoginNavbar">
+    <ul class="navbar-nav mr-auto">
+    </ul>
+    <span class="navbar-text">
+      <button class="btn btn-secondary-color btn-sm" data-toggle="modal" data-target="#LoginModal" *ngIf="!auth.user">Login</button>
+      <button class="btn btn-secondary-color btn-sm" (click)="logout()" *ngIf="auth.user">Logout</button>
+      <button [routerLink]="['register']" class="btn btn-secondary-color btn-sm" *ngIf="!auth.user">Register</button>
+    </span>
+  </div>
+
+</nav>
+<nav class="navbar navbar-expand-lg navbar-secondary-color navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['myappointments']" *ngIf="auth.user">My Appointments</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['bookappointments']">Bookappointments</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['accountinfo']" *ngIf="auth.user">Account info</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="alert alert-danger" role="alert" *ngIf="auth.alert">
+  {{auth.alert}}
+</div>
+
+
+<!-- The Login Modal -->
+<div class="modal fade" id="LoginModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Authentication</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label>Username / Email</label>
+              <input class="form-control" type="text" [value]="login.username" name="username" [(ngModel)]=login.username>
+            </div>
+            <div class="col-md-6">
+              <label>Password</label>
+              <input class="form-control" type="password" [value]="login.password" name="password" [(ngModel)]=login.password>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <button type="submit" class="btn btn-main-color btn-block" (click)="doLogin()" data-dismiss="modal">
+                Login
+              </button>
+            </div>
+            <div class="col-md-6">
+              <button type="submit" class="btn btn-secondary btn-block" data-dismiss="modal">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,190 @@
+<h4>Register</h4>
+<hr>
+<form [formGroup]="forma" (ngSubmit)="registerUser()">
+
+  <div class="row">
+
+    <div class="col">
+      <div class="form-group row">
+        <label class="col-3 col-form-label">
+          Name
+        </label>
+        <div class="col-9">
+          <input class="form-control" 
+                  [ngClass]="{ 'is-invalid': !forma.controls['name'].valid }"
+                  [ngModel]="user.name"
+                  name="name" 
+                  type="text" 
+                  placeholder="Name" 
+                  formControlName="name">
+          <div *ngIf="forma.get('name').errors?.required" class="form-control-feedback invalid-feedback">
+            The name is required.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="form-group row">
+        <label class="col-3 col-form-label">
+          Last Name
+        </label>
+        <div class="col-9">
+          <input class="form-control" 
+                  [ngClass]="{ 'is-invalid': !forma.controls['lastname'].valid }" 
+                  [ngModel]="user.lastname" 
+                  name="lastname"
+                  type="text" 
+                  placeholder="Last name"
+                  formControlName="lastname">
+          <div *ngIf="forma.get('lastname').errors?.required" class="form-control-feedback invalid-feedback">
+            The Last name is required.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col">
+      <div class="form-group row">
+        <label class="col-3 col-form-label">
+          Email
+        </label>
+        <div class="col-9">
+          <input class="form-control" [ngClass]="{ 'is-invalid': !forma.controls['email'].valid }" 
+                [ngModel]="user.email" name="email"
+                type="text" placeholder="Email"
+            formControlName="email">
+          <div *ngIf="forma.get('email').errors?.required" class="form-control-feedback invalid-feedback">
+            The email mandatory.
+          </div>
+          <div *ngIf="forma.get('email').errors?.pattern && !forma.get('email').errors?.required" class="form-control-feedback invalid-feedback">
+            The email is not valid.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="form-group row">
+        <label class="col-3 col-form-label">
+          Phone number
+        </label>
+        <div class="col-9">
+          <input class="form-control" [ngClass]="{ 'is-invalid': !forma.controls['phoneNumber'].valid }" 
+                [ngModel]="user.phoneNumber" name="phoneNumber"
+                type="number" placeholder="Phone number"
+                formControlName="phoneNumber">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+    <div class="row">
+    
+      <div class="col">
+        <div class="form-group row">
+          <label class="col-3 col-form-label">
+            Language
+          </label>
+          <div class="col-9">
+            <select class="form-control" [ngClass]="{ 'is-invalid': !forma.controls['language'].valid }"
+                    [ngModel]="user.language" name="language"
+                    placeholder="Select language"
+                    formControlName="language">
+              <option value="">
+                Select your language
+              </option>
+              <option *ngFor="let language of languages" [value]="language.id">{{ language.name }}</option>
+            </select>
+            <div *ngIf="forma.get('language').errors?.required" class="form-control-feedback invalid-feedback">
+              The language is mandatory.
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="col">
+        <div class="form-group row">
+          <label class="col-3 col-form-label">
+            Rol
+          </label>
+          <div class="col-9">
+            <select class="form-control" [ngClass]="{ 'is-invalid': !forma.controls['role'].valid }"
+                    [ngModel]="user.role" name="role"
+                    placeholder="Select role" formControlName="role">
+              <option value="">
+                Select the role for the user
+              </option>
+              <option *ngFor="let role of roles" [value]="language.id">{{ role.name }}</option>
+            </select>
+            <div *ngIf="forma.get('role').errors?.required" class="form-control-feedback invalid-feedback">
+              The role is mandatory.
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+
+
+  <div class="row">
+
+    <div class="col">
+      <div class="form-group row">
+        <label class="col-3 col-form-label">
+          Password
+        </label>
+        <div class="col-9">
+          <input class="form-control" [ngClass]="{ 'is-invalid': !forma.controls['password'].valid }" 
+                type="password" placeholder="Password"
+                formControlName="password" >
+          <div class="form-control-feedback invalid-feedback">
+             User password in demo site is 'demo'.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="form-group row">
+        <label class="col-3 col-form-label">
+          Retype password
+        </label>
+        <div class="col-9">
+          <input class="form-control" [ngClass]="{ 'is-invalid': !forma.controls['confirmpassword'].valid }" type="password" placeholder="Confirm password"
+            formControlName="confirmpassword">
+          <div class="form-control-feedback invalid-feedback">
+             User password in demo site is 'demo'.
+          </div>
+          <div *ngIf="forma.get('confirmpassword').errors?.notEqualsPass && !forma.get('confirmpassword').errors?.required" class="form-control-feedback invalid-feedback">
+            The passwords are not equal.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  
+
+
+
+  <div class="form-group row">
+    <div class="form-group col-md-6">
+      <button type="submit" class="btn btn-primary btn-block" [disabled]="!forma.valid">
+        Register
+      </button>
+    </div>
+    <div class="col-md-6">
+      <button type="reset" class="btn btn-secondary btn-block">
+        Reset
+      </button>
+    </div>
+  </div>
+
+</form>
