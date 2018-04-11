@@ -4,14 +4,21 @@
 <form #forma="ngForm">
   <div class="form-row">
     <div class="col-md-6">
-      <div class="form-group col-md-12" *ngIf="hospitals?.length > 1">
-        <label>Hospital</label>
-        <select name="hospital" class="form-control" [(ngModel)]=searchterms.hospitalId>
-          <option value="">
-            Select a hospital
-          </option>
-          <option *ngFor="let hospital of hospitals" [value]="hospital.id">{{ hospital.name }}</option>
-        </select>
+
+      <div class="row" *ngIf="hospitals?.length > 1">
+        <div class="form-group col-md-12">
+          <label>Hospital</label>
+          <div class="input-group mb-3">
+            <select name="hospital" class="form-control" [(ngModel)]=searchterms.hospitalId (ngModelChange)="searchDepartments()">
+              <option *ngFor="let hospital of hospitals" [value]="hospital.id">{{ hospital.name }}</option>
+            </select>
+            <div class="input-group-append">
+              <button class="input-group-text" (click)="searchterms.hospitalId = null">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="row">
@@ -34,17 +41,23 @@
         <div class="form-group col-md-12">
           <label>Department</label>
           <div class="input-group mb-3">
-            <select name="department" class="form-control" [(ngModel)]=searchterms.orgId [disabled]="!searchterms.payorId" (ngModelChange)="checkDepartment(); searchTreatments($event)">
+            <select name="department" class="form-control" [(ngModel)]=searchterms.departmentId [disabled]="!searchterms.hospitalId" (ngModelChange)="checkDepartment(); searchTreatments($event)">
               <option *ngFor="let department of departments" [value]="department.id">{{ department.name }}</option>
             </select>
             <div class="input-group-append">
-              <button class="input-group-text" (click)="searchterms.orgId = null">
+              <button class="input-group-text" (click)="searchterms.departmentId = null">
                 <i class="fas fa-trash-alt"></i>
               </button>
             </div>
           </div>
         </div>
       </div>
+
+
+
+    </div>
+
+    <div class="col-md-6">
 
       <div class="row">
         <div class="form-group col-md-12">
@@ -62,10 +75,6 @@
           </div>
         </div>
       </div>
-
-    </div>
-
-    <div class="col-md-6">
       <div class="row">
         <div class="form-group col-md-12">
           <label>Consultants' Specialty</label>
@@ -87,58 +96,12 @@
       </div>
 
       <div class="row">
-        <div class="form-group col-md-12">
-          <label>Outpatient clinic</label>
-          <div class="input-group mb-3">
-            <select name="treatment" class="form-control" [(ngModel)]=searchterms.treatmentId [disabled]="!searchterms.payorId || !searchterms.orgId">
-              <option *ngFor="let treatment of treatments" [value]="treatment.id">{{ treatment.name }}</option>
-            </select>
-            <div class="input-group-append">
-              <button class="input-group-text" (click)="searchterms.treatmentId = null">
-                <i class="fas fa-trash-alt"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="form-group col-md-12">
-          <label>Visit Type</label>
-          <div class="input-group mb-3">
-            <select name="visitType" class="form-control" [(ngModel)]=searchterms.visitTypeId [disabled]="!searchterms.payorId || !searchterms.orgId">
-              <option *ngFor="let visitType of visitTypes" [value]="visitType.id">{{ visitType.name }}</option>
-            </select>
-            <div class="input-group-append">
-              <button class="input-group-text" (click)="searchterms.visitTypeId = null">
-                <i class="fas fa-trash-alt"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="row">
         <div class="form-group col-md-6">
           <label>Date</label>
           <input class="form-control" type="date" [value]="searchterms.date" name="date" [(ngModel)]=searchterms.date [disabled]="!searchterms.payorId || !searchterms.orgId">
         </div>
 
 
-        <div class="col-md-6">
-          <label>Part of the day</label>
-          <div class="input-group mb-3">
-            <select name="schedule" class="form-control" [(ngModel)]=searchterms.scheduleId [disabled]="!searchterms.payorId || !searchterms.orgId">
-              <option *ngFor="let schedule of schedules.options" [value]="schedule.id">{{ schedule.name }}</option>
-            </select>
-            <div class="input-group-append">
-              <button class="input-group-text" (click)="searchterms.scheduleId = null">
-                <i class="fas fa-trash-alt"></i>
-              </button>
-            </div>
-          </div>
-        </div>
 
       </div>
     </div>
@@ -147,21 +110,20 @@
 
   <div class="row">
     <div class="form-group col-md-6">
-      <button type="submit" class="btn btn-main-color btn-block" [disabled]="!searchterms.payorId || !searchterms.orgId" (click)="searchFreeSlots()">
+      <button type="submit" class="btn btn-main-color btn-block" (click)="searchFreeSlots()">
         Search
       </button>
     </div>
     <div class="col-md-6">
-      <button class="btn btn-secondary-color btn-block" [disabled]="!searchterms.payorId || !searchterms.orgId" (click)="resetSearchterms()">
+      <button class="btn btn-secondary-color btn-block"  (click)="resetSearchterms()">
         Reset
       </button>
     </div>
   </div>
 </form>
-<div class="alert alert-warning" role="alert" *ngIf="_databaseService.alert">
-  {{_databaseService.alert}}
+<div class="alert alert-warning" role="alert" *ngIf="alert">
+  {{alert}}
 </div>
-
 
 <div *ngIf="freeslots">
   <div id="no-more-tables">

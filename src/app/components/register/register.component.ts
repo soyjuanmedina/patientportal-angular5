@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
-// import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 // Interfaces
 import { User } from '../../interfaces/user.interface';
@@ -15,6 +15,8 @@ import { UserService } from "../../services/user.service";
 })
 export class RegisterComponent {
 
+  alert: string;
+
   forma: FormGroup;
 
   user: User = {
@@ -26,7 +28,8 @@ export class RegisterComponent {
     role: ''
   };
 
-  constructor(private _userService: UserService) {
+  constructor(private _userService: UserService,
+              private router: Router) {
 
     this.forma = new FormGroup({
 
@@ -42,6 +45,10 @@ export class RegisterComponent {
       'language': new FormControl,
       'role': new FormControl,
     });
+  }
+
+  ngOnInit() {
+    delete this.alert;
   }
 
 
@@ -89,8 +96,11 @@ export class RegisterComponent {
 
     this._userService.newUser(this.user)
       .subscribe(data => {
-      console.log(data);
-    });
+        this.alert = 'Thanks for register. Now you can Login'
+        // this.router.navigate(['accountinfo']);
+        },
+        error=> console.log(error)
+      );
     // console.log(this.forma.value);
     // this.auth.registerUser(this.forma.value);
 

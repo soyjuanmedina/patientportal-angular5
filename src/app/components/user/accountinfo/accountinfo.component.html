@@ -1,3 +1,196 @@
-<p>
-  accountinfo works!
-</p>
+<div class="container">
+  <div class="row my-2">
+    <div class="col-lg-8 order-lg-2">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a href="" data-target="#settings" data-toggle="tab" class="nav-link">Settings</a>
+        </li>
+      </ul>
+      <div class="tab-content py-4">
+
+        <!--Tab profile-->
+        <div class="tab-pane active" id="profile">
+          <div class="alert alert-success col-xs-12">
+            If there is any discrepancies with the actual information, please contact the clinic directly.
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Name:</span>
+                  </div>
+                  <input type="text" class="form-control" value="{{_userService.user.name}}" disabled>
+                </div>
+              </div>
+              <div class="col">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Last name:</span>
+                  </div>
+                  <input type="text" class="form-control" value="{{_userService.user.lastname}}" disabled>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Phone Number:</span>
+                  </div>
+                  <input type="text" class="form-control" value="{{_userService.user.phoneNumber}}" disabled>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Language:</span>
+                  </div>
+                  <input type="text" class="form-control" value="{{_userService.user.language}}" disabled>
+                </div>
+              </div>
+              <div class="col">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Role:</span>
+                  </div>
+                  <input type="text" class="form-control" value="{{_userService.user.role}}" disabled>
+                </div>
+              </div>
+            </div>
+            
+
+          </div>
+        </div>
+
+        <!--Tab Settings-->
+        <div class="tab-pane" id="settings">
+          <form [formGroup]="formaMail" (ngSubmit)="changeMail()">
+            <h4> Change your email address</h4>
+            <div class="row">
+              <div class="col">
+                <div class="form-group row">
+                  <label class="col-3 col-form-label">
+                    Email
+                  </label>
+                  <div class="col-9">
+                    <input class="form-control" [ngClass]="{ 'is-invalid': !formaMail.controls['email'].valid }" type="text" placeholder="Email"
+                      formControlName="email">
+                    <div *ngIf="formaMail.get('email').errors?.pattern && !formaMail.get('email').errors?.required" class="form-control-feedback invalid-feedback">
+                      The email is not valid.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group row">
+                  <label class="col-3 col-form-label">
+                    Retype email
+                  </label>
+                  <div class="col-9">
+                    <input class="form-control" [ngClass]="{ 'is-invalid': !formaMail.controls['confirmemail'].valid }" type="text" placeholder="Confirm email"
+                      formControlName="confirmemail">
+                    <div *ngIf="formaMail.get('email').errors?.pattern && !formaMail.get('confirmemail').errors?.required" class="form-control-feedback invalid-feedback">
+                      The email is not valid.
+                    </div>
+                    <div *ngIf="formaMail.get('confirmemail').errors?.notEqualsMail && !formaMail.get('confirmemail').errors?.required && formaMail.get('confirmemail').errors?.pattern"
+                      class="form-control-feedback invalid-feedback">
+                      The emails are not equal.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="form-group col-md-6">
+                <button type="submit" class="btn btn-primary btn-block" [disabled]="!formaMail.valid">
+                  Change mail
+                </button>
+              </div>
+              <div class="col-md-6">
+                <button type="reset" class="btn btn-secondary btn-block">
+                  Reset
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <hr>
+
+          <form [formGroup]="formaPass" (ngSubmit)="changePass()">
+            <h4> Change your password</h4>
+            <div class="row">
+              <div class="col">
+                <div class="form-group row">
+                  <label class="col-3 col-form-label">
+                    Password
+                  </label>
+                  <div class="col-9">
+                    <input class="form-control" [ngClass]="{ 'is-invalid': !formaPass.controls['password'].valid }" type="password" placeholder="Password"
+                      formControlName="password">
+                      <div class="form-control-feedback invalid-feedback">
+                        User password in demo site is 'demo'.
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="form-group row">
+                  <label class="col-3 col-form-label">
+                    Retype password
+                  </label>
+                  <div class="col-9">
+                    <input class="form-control" [ngClass]="{ 'is-invalid': !formaPass.controls['confirmpassword'].valid }" type="password" placeholder="Confirm password"
+                      formControlName="confirmpassword">
+                    <div class="form-control-feedback invalid-feedback">
+                       User password in demo site is 'demo'.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="form-group col-md-6">
+                <button type="submit" class="btn btn-primary btn-block" disabled>
+                  Change password
+                </button>
+              </div>
+              <div class="col-md-6">
+                <button type="reset" class="btn btn-secondary btn-block" disabled>
+                  Reset
+                </button>
+              </div>
+            </div>
+          </form>
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+    <!--Left Column-->
+    <div class="col-lg-4 order-lg-1 text-center">
+      <img src="/assets/img/user-profile.png" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+      <h6 class="mt-2">{{_userService.user.name}} {{_userService.user.lastname}}</h6>
+      <button type="button" class="btn btn-circle btn-danger btn-sm">Delete account</button>
+    </div>
+  </div>
+</div>
