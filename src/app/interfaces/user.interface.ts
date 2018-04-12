@@ -5,4 +5,5 @@ export interface User {
   phoneNumber: string;
   language: string;
   role: string;
+  appointments: any[];
 }

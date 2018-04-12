@@ -8,6 +8,7 @@ import { User } from '../interfaces/user.interface';
 
 // Services
 import { UserService } from "./user.service";
+import { ResourceService } from "./resource.service";
 
 @Injectable()
 export class AuthService {
@@ -16,7 +17,8 @@ export class AuthService {
 
   constructor(public router: Router,
     private http: HttpClient,
-    private _userService: UserService) { }
+    private _userService: UserService,
+    private _resourceService: ResourceService) { }
 
   loginUser(username, password){
     let url = this.firebaseURL + '/users.json?orderBy="email"&equalTo="' + username + '"';
@@ -26,7 +28,6 @@ export class AuthService {
         sessionStorage.setItem('dataPatient', JSON.stringify(RES[Object.keys(RES)[0]]));
         let userId = Object.keys(RES)[0];
         this._userService.getUser(userId);
-        this.router.navigate(['/myappointments']);
       },
       response => {
       },
@@ -39,6 +40,7 @@ export class AuthService {
   logout(){
     sessionStorage.clear();
     this.router.navigate(['/bookappointments']);
+    delete this._resourceService.selectedFreeslot;
     this._userService.doLogout();
   }
 

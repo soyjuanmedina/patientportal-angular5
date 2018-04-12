@@ -16,6 +16,7 @@ import { UserService } from "../../services/user.service";
 export class RegisterComponent {
 
   alert: string;
+  message: string;
 
   forma: FormGroup;
 
@@ -25,7 +26,8 @@ export class RegisterComponent {
     email: '',
     phoneNumber: '',
     language: '',
-    role: ''
+    role: '',
+    appointments: []
   };
 
   constructor(private _userService: UserService,
@@ -91,16 +93,29 @@ export class RegisterComponent {
       email: this.forma.value.email,
       phoneNumber: this.forma.value.phoneNumber,
       language: this.forma.value.language,
-      role: this.forma.value.role
+      role: this.forma.value.role,
+      appointments: []
+      
   };
 
-    this._userService.newUser(this.user)
-      .subscribe(data => {
-        this.alert = 'Thanks for register. Now you can Login'
-        // this.router.navigate(['accountinfo']);
-        },
-        error=> console.log(error)
-      );
+    this._userService.chekIfUserExists(this.user.email).subscribe(
+      res =>{
+        console.log(Object.keys(res).length);
+        if (!Object.keys(res).length){
+          this._userService.newUser(this.user)
+            .subscribe(data => {
+              this.message = 'Thanks for register. Now you can Login'
+              // this.router.navigate(['accountinfo']);
+            },
+              error => console.log(error)
+            );
+        }else{
+          this.alert = 'The user is already register';
+        }
+      }
+    );
+
+    
     // console.log(this.forma.value);
     // this.auth.registerUser(this.forma.value);
 

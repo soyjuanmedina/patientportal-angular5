@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 export class ResourceService {
 
   firebaseURL: string = 'https://patient-portal-a6c57.firebaseio.com/';
+  selectedFreeslot: any;
 
   constructor (private http: HttpClient) { }
 

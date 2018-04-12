@@ -6,6 +6,7 @@ declare var $:any; // TODO hide modal in othe way
 // Services
 import { UserService } from "../../../services/user.service";
 import { AuthService } from "../../../services/auth.service";
+import { ResourceService } from "../../../services/resource.service";
 
 @Component({
   selector: 'app-navbar',
@@ -24,7 +25,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(public router: Router,
     private _userService: UserService,
-    private _authService: AuthService) {
+    private _authService: AuthService,
+    private _resourceService: ResourceService) {
   }
 
   ngOnInit() {
@@ -37,6 +39,12 @@ export class NavbarComponent implements OnInit {
       this._authService.loginUser(this.login.username, this.login.password);
       delete this.alert;
       $('#LoginModal').modal('hide');
+      if (!this._resourceService.selectedFreeslot){
+        this.router.navigate(['/myappointments']);
+      }else{
+        $('#FreeSlotModal').modal('show');
+        console.log(this._resourceService.selectedFreeslot);
+      }
     }
   }
 

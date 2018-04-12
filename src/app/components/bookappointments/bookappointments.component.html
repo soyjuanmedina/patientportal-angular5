@@ -7,9 +7,9 @@
 
       <div class="row" *ngIf="hospitals?.length > 1">
         <div class="form-group col-md-12">
-          <label>Hospital</label>
+          <label>Choose your Hospital</label>
           <div class="input-group mb-3">
-            <select name="hospital" class="form-control" [(ngModel)]=searchterms.hospitalId (ngModelChange)="searchDepartments()">
+            <select name="hospital" class="form-control" [(ngModel)]=searchterms.hospitalId>
               <option *ngFor="let hospital of hospitals" [value]="hospital.id">{{ hospital.name }}</option>
             </select>
             <div class="input-group-append">
@@ -36,12 +36,13 @@
           </div>
         </div>
       </div>
-
+      
       <div class="row">
         <div class="form-group col-md-12">
           <label>Department</label>
           <div class="input-group mb-3">
-            <select name="department" class="form-control" [(ngModel)]=searchterms.departmentId [disabled]="!searchterms.hospitalId" (ngModelChange)="checkDepartment(); searchTreatments($event)">
+            <select name="department" class="form-control" [(ngModel)]=searchterms.departmentId [disabled]="!searchterms.hospitalId"
+              (ngModelChange)="searchDoctors()">
               <option *ngFor="let department of departments" [value]="department.id">{{ department.name }}</option>
             </select>
             <div class="input-group-append">
@@ -53,17 +54,14 @@
         </div>
       </div>
 
-
-
     </div>
-
     <div class="col-md-6">
 
       <div class="row">
         <div class="form-group col-md-12">
           <label>Consultant</label>
           <div class="input-group mb-3">
-            <select name="consultant" class="form-control" [(ngModel)]=searchterms.doctorId [disabled]="!searchterms.payorId || !searchterms.orgId || !doctors"
+            <select name="consultant" class="form-control" [(ngModel)]=searchterms.doctorId [disabled]="!doctors.length"
               (ngModelChange)="searchSpecialties()">
               <option *ngFor="let doctor of doctors" [value]="doctor.id">{{ doctor.name }}</option>
             </select>
@@ -75,38 +73,16 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="form-group col-md-12">
-          <label>Consultants' Specialty</label>
-          <div class="input-group mb-3">
-            <select name="specialty" class="form-control" [(ngModel)]=searchterms.specialtyId [disabled]="!searchterms.payorId || !searchterms.orgId"
-              (ngModelChange)="searchDoctors()">
-              <option value="">
-                Select a specialty
-              </option>
-              <option *ngFor="let specialty of specialties" [value]="specialty.id">{{ specialty.name }}</option>
-            </select>
-            <div class="input-group-append">
-              <button class="input-group-text" (click)="searchterms.specialtyId = null">
-                <i class="fas fa-trash-alt"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <div class="row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-6 offset-md-3">
           <label>Date</label>
-          <input class="form-control" type="date" [value]="searchterms.date" name="date" [(ngModel)]=searchterms.date [disabled]="!searchterms.payorId || !searchterms.orgId">
+          <input class="form-control" type="date" [value]="searchterms.date" name="date" [(ngModel)]=searchterms.date>
         </div>
-
-
-
       </div>
+
     </div>
   </div>
-
 
   <div class="row">
     <div class="form-group col-md-6">
@@ -115,7 +91,7 @@
       </button>
     </div>
     <div class="col-md-6">
-      <button class="btn btn-secondary-color btn-block"  (click)="resetSearchterms()">
+      <button class="btn btn-secondary-color btn-block"  (click)="reset()">
         Reset
       </button>
     </div>
@@ -125,7 +101,7 @@
   {{alert}}
 </div>
 
-<div *ngIf="freeslots">
+<div *ngIf="freeslots.length">
   <div id="no-more-tables">
     <h4>Select your appointment</h4>
     <table class="col-md-12 table table-striped">
@@ -135,16 +111,14 @@
           <th scope="col">Hour</th>
           <th scope="col">Consultant</th>
           <th scope="col">Department</th>
-          <th scope="col">Visit type</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let freeslot of freeslots" data-toggle="modal" data-target="#FreeSlotModal" (click)="sendFreeslot(freeslot)">
           <th>{{freeslot.date}}</th>
           <th>{{freeslot.hour}}</th>
-          <th>{{freeslot.doctor.name}}</th>
-          <th>{{freeslot.department.name}}</th>
-          <th>{{freeslot.schedulingType.name}}</th>
+          <th>{{freeslot.doctorName}}</th>
+          <th>{{freeslot.department}}</th>
         </tr>
       </tbody>
     </table>
@@ -153,7 +127,7 @@
 
 
 <!-- The FreeSlot Modal -->
-<div class="modal fade" id="FreeSlotModal" *ngIf="selectedFreeslot">
+<div class="modal fade" id="FreeSlotModal" *ngIf="_resourceService.selectedFreeslot">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -167,15 +141,13 @@
       <div class="modal-body">
         <div class="card">
           <div class="card-header">
-            {{selectedFreeslot.date}} | {{selectedFreeslot.hour}}
+            Date: {{_resourceService.selectedFreeslot.date}} | Hour: {{_resourceService.selectedFreeslot.hour}}
           </div>
           <div class="card-body">
-            <h5 class="card-title">{{selectedFreeslot.doctor.name}}</h5>
-            <p class="card-text">Department: {{selectedFreeslot.department.name}}
-              <br/> Speciality: {{selectedFreeslot.treatment.name}}
-              <br/> Visit Type: {{selectedFreeslot.schedulingType.name}}
+            <h5 class="card-title">{{_resourceService.selectedFreeslot.doctorName}}</h5>
+            <p class="card-text">Department: {{_resourceService.selectedFreeslot.department}}
             </p>
-            <div class="row" *ngIf="!patient">
+            <div class="row" *ngIf="!_userService.user">
               <div class="form-group col-md-4">
                 <button class="btn btn-main-color btn-block" data-toggle="modal" data-target="#LoginModal" data-dismiss="modal">
                   Login
@@ -192,9 +164,9 @@
                 </button>
               </div>
             </div>
-            <div class="row" *ngIf="patient">
+            <div class="row" *ngIf="_userService.user">
               <div class="form-group col-md-6">
-                <button type="submit" class="btn btn-main-color btn-block" (click)="bookSlot(selectedFreeslot)">
+                <button type="submit" class="btn btn-main-color btn-block" data-dismiss="modal" (click)="bookSlot(_resourceService.selectedFreeslot)">
                   Book
                 </button>
               </div>

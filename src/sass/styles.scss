@@ -16,6 +16,19 @@
 }
 
 // Color to buttons
+.main-color{
+    color: $main-color;
+}
+
+a:hover
+{
+    color: $main-color;
+}
+
+.secondary-color{
+    color: $secondary-color;
+}
+
 .btn-main-color{
     color: #fff;
     background-color: $main-color;

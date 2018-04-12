@@ -71,6 +71,9 @@
 
         <!--Tab Settings-->
         <div class="tab-pane" id="settings">
+          <div class="alert alert-success" role="alert" *ngIf = "alert">
+            {{alert}}
+          </div>
           <form [formGroup]="formaMail" (ngSubmit)="changeMail()">
             <h4> Change your email address</h4>
             <div class="row">

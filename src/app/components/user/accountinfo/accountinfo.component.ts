@@ -14,6 +14,7 @@ export class AccountinfoComponent implements OnInit {
   user;
   formaMail: FormGroup;
   formaPass: FormGroup;
+  alert;
 
   constructor(private _userService: UserService) {
     this.user = this._userService.user;
@@ -38,11 +39,6 @@ export class AccountinfoComponent implements OnInit {
       Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"),
       this.notEqualMail.bind(this.formaMail)
     ]);
-  }
-
-  changeMail() {
-    console.log(this.formaMail.controls);
-
   }
 
   changePass() {
@@ -80,7 +76,19 @@ export class AccountinfoComponent implements OnInit {
 
   }
 
+  changeMail(){
+    this.user.email = this.formaMail.controls.email.value;
+    this._userService.updateUser(this.user)
+      .subscribe(data => {
+        this.alert = 'Your email has been updated'
+        // this.router.navigate(['accountinfo']);
+      },
+        error => console.log(error)
+      );
+  }
+
   ngOnInit() {
+    delete this.alert;
   }
 
 }
