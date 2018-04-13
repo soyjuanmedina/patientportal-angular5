@@ -117,7 +117,7 @@
       <div class="col">
         <div class="form-group row">
           <label class="col-3 col-form-label">
-            Rol
+            Role
           </label>
           <div class="col-9">
             <select class="form-control" [ngClass]="{ 'is-invalid': !forma.controls['role'].valid }"
@@ -126,7 +126,7 @@
               <option value="">
                 Select the role for the user
               </option>
-              <option *ngFor="let role of roles" [value]="language.id">{{ role.name }}</option>
+              <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option>
             </select>
             <div *ngIf="forma.get('role').errors?.required" class="form-control-feedback invalid-feedback">
               The role is mandatory.

@@ -8,6 +8,7 @@ import { User } from '../../interfaces/user.interface';
 
 // Services
 import { UserService } from "../../services/user.service";
+import { ResourceService } from "../../services/resource.service";
 
 @Component({
   selector: 'app-register',
@@ -20,6 +21,9 @@ export class RegisterComponent {
 
   forma: FormGroup;
 
+  languages = [];
+  roles = [];
+
   user: User = {
     name: '',
     lastname: '',
@@ -31,7 +35,8 @@ export class RegisterComponent {
   };
 
   constructor(private _userService: UserService,
-              private router: Router) {
+    private _resourceService: ResourceService,
+    private router: Router) {
 
     this.forma = new FormGroup({
 
@@ -47,6 +52,24 @@ export class RegisterComponent {
       'language': new FormControl,
       'role': new FormControl,
     });
+
+    this._resourceService.getResource('languages')
+      .subscribe(data => {
+        for (var x in data) {
+          if (data[x] != null) {
+            this.languages.push(data[x]);
+          }
+        }
+      });
+
+    this._resourceService.getResource('roles')
+      .subscribe(data => {
+        for (var x in data) {
+          if (data[x] != null) {
+            this.roles.push(data[x]);
+          }
+        }
+      });
   }
 
   ngOnInit() {

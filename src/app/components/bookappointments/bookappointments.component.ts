@@ -94,8 +94,10 @@ export class BookappointmentsComponent {
   }
 
   bookSlot(selectedFreeslot){
-    this._userService.updateMyAppointments(selectedFreeslot);
-    this.router.navigate(['/myappointments']);
+    this._userService.user.appointments.push(selectedFreeslot);
+    this._userService.updateUser(this._userService.user).subscribe( data=> {
+      this.router.navigate(['/myappointments'])
+    });
   }
 
   reset() {
