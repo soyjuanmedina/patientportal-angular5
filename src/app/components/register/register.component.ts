@@ -34,9 +34,9 @@ export class RegisterComponent {
     appointments: []
   };
 
-  constructor(private _userService: UserService,
-    private _resourceService: ResourceService,
-    private router: Router) {
+  constructor(public _userService: UserService,
+    public _resourceService: ResourceService,
+    public router: Router) {
 
     this.forma = new FormGroup({
 

@@ -16,7 +16,7 @@ export class AccountinfoComponent implements OnInit {
   formaPass: FormGroup;
   alert;
 
-  constructor(private _userService: UserService) {
+  constructor(public _userService: UserService) {
     this.user = this._userService.user;
 
     this.formaMail = new FormGroup({

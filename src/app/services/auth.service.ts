@@ -16,9 +16,9 @@ export class AuthService {
   firebaseURL: string = 'https://patient-portal-a6c57.firebaseio.com/';
 
   constructor(public router: Router,
-    private http: HttpClient,
-    private _userService: UserService,
-    private _resourceService: ResourceService) { }
+    public http: HttpClient,
+    public _userService: UserService,
+    public _resourceService: ResourceService) { }
 
   loginUser(username, password){
     let url = this.firebaseURL + '/users.json?orderBy="email"&equalTo="' + username + '"';

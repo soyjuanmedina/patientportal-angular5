@@ -11,9 +11,10 @@ export class UserService {
 
   firebaseURL: string = 'https://patient-portal-a6c57.firebaseio.com/';
   user: any;
+  alert: string;
 
   constructor(public router: Router,
-    private http: HttpClient) {
+    public http: HttpClient) {
     if (typeof sessionStorage.dataPatient != 'undefined') {
       this.user = JSON.parse(sessionStorage.getItem('dataPatient'));
     }
@@ -45,16 +46,6 @@ export class UserService {
     let url = this.firebaseURL + '/users.json?orderBy="email"&equalTo="' + email + '"';
     return this.http.get(url)
       .map(res => res)
-  }
-
-  updateMyAppointments(selectedFreeslot){
-    if(!this.user.appointments){
-      this.user.appointments = [];
-    }
-    this.user.appointments.push(selectedFreeslot);
-    sessionStorage.setItem('dataPatient', JSON.stringify(this.user));
-    this.updateUser(this.user)
-      .subscribe();
   }
 
   updateUser(user: User) {

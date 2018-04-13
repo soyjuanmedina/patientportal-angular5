@@ -36,8 +36,8 @@ export class BookappointmentsComponent {
 
 
   constructor(public router: Router,
-    private _resourceService: ResourceService,
-    private _userService: UserService) {
+    public _resourceService: ResourceService,
+    public _userService: UserService) {
     this._resourceService.getResource('hospitals')
       .subscribe(data => {
         for (var x in data) {

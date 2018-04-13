@@ -8,7 +8,7 @@ export class ResourceService {
   firebaseURL: string = 'https://patient-portal-a6c57.firebaseio.com/';
   selectedFreeslot: any;
 
-  constructor (private http: HttpClient) { }
+  constructor(public http: HttpClient) { }
 
   getResource(id){
     let url = this.firebaseURL + id + '.json';
