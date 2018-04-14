@@ -191,9 +191,49 @@
 
     <!--Left Column-->
     <div class="col-lg-4 order-lg-1 text-center">
-      <img src="/assets/img/user-profile.png" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+      <img src="assets/img/user-profile.png" class="mx-auto img-fluid img-circle d-block" alt="avatar">
       <h6 class="mt-2">{{_userService.user.name}} {{_userService.user.lastname}}</h6>
-      <button type="button" class="btn btn-circle btn-danger btn-sm">Delete account</button>
+      <button type="button" class="btn btn-circle btn-danger btn-sm" 
+        data-toggle="modal" data-target="#deleteAccountModal">
+        Delete account
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- The delete account Modal -->
+<div class="modal fade" id="deleteAccountModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-body"><div class="modal-header">
+        <h4 class="modal-title">Are you sure?</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+      <p>
+        Do you really want to delete your account
+      </p>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <button type="submit" class="btn btn-main-color btn-block" (click)="deleteAccount()" data-dismiss="modal">
+              Yes
+            </button>
+          </div>
+          <div class="col-md-6">
+            <button type="submit" class="btn btn-secondary btn-block" data-dismiss="modal">
+              No
+            </button>
+          </div>
+        </div>
+      </div>
+
+      </div>
     </div>
   </div>
 </div>

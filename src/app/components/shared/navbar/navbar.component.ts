@@ -33,17 +33,15 @@ export class NavbarComponent implements OnInit {
   }
 
   doLogin() {
-    if (this.login.password !='12345'){
+    if (this.login.password !=='12345'){
       this.alert="Remember in the demo site the password is always '12345'";
     }else{
       this._authService.loginUser(this.login.username, this.login.password);
       delete this.alert;
       $('#LoginModal').modal('hide');
-      if (!this._resourceService.selectedFreeslot){
-        this.router.navigate(['/myappointments']);
-      }else{
+      if (this._resourceService.selectedFreeslot){
         $('#FreeSlotModal').modal('show');
-        console.log(this._resourceService.selectedFreeslot);
+
       }
     }
   }

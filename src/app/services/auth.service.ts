@@ -13,7 +13,7 @@ import { ResourceService } from "./resource.service";
 @Injectable()
 export class AuthService {
 
-  firebaseURL: string = 'https://patient-portal-a6c57.firebaseio.com/';
+  firebaseURL = 'https://patient-portal-a6c57.firebaseio.com/';
 
   constructor(public router: Router,
     public http: HttpClient,
@@ -25,9 +25,17 @@ export class AuthService {
     this.http.get(url)
       .subscribe(
       RES => {
-        sessionStorage.setItem('dataPatient', JSON.stringify(RES[Object.keys(RES)[0]]));
-        let userId = Object.keys(RES)[0];
-        this._userService.getUser(userId);
+        if (!Object.keys(RES).length){
+          this._userService.alert = "The user don't exits, please register it";
+        } else{
+          delete this._userService.alert;
+          if (!this._resourceService.selectedFreeslot){
+            this.router.navigate(['/myappointments']);
+          }
+          sessionStorage.setItem('dataPatient', JSON.stringify(RES[Object.keys(RES)[0]]));
+          let userId = Object.keys(RES)[0];
+          this._userService.getUser(userId);
+        }
       },
       response => {
       },

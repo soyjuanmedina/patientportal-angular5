@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ResourceService {
 
-  firebaseURL: string = 'https://patient-portal-a6c57.firebaseio.com/';
+  firebaseURL = 'https://patient-portal-a6c57.firebaseio.com/';
   selectedFreeslot: any;
 
   constructor(public http: HttpClient) { }
@@ -13,14 +13,14 @@ export class ResourceService {
   getResource(id){
     let url = this.firebaseURL + id + '.json';
     return this.http.get(url)
-    .map(res => res)
+    .map(res => res);
   }
 
 
   getNodofromResourceId(nodo, resource, id){
     let url = this.firebaseURL + resource + '/' + id + '/' + nodo + '.json';
     return this.http.get(url)
-      .map(res => res)
+      .map(res => res);
   }
 
 }

@@ -9,13 +9,13 @@ import { User } from '../interfaces/user.interface';
 @Injectable()
 export class UserService {
 
-  firebaseURL: string = 'https://patient-portal-a6c57.firebaseio.com/';
+  firebaseURL = 'https://patient-portal-a6c57.firebaseio.com/';
   user: any;
   alert: string;
 
   constructor(public router: Router,
     public http: HttpClient) {
-    if (typeof sessionStorage.dataPatient != 'undefined') {
+    if (typeof sessionStorage.dataPatient !== 'undefined') {
       this.user = JSON.parse(sessionStorage.getItem('dataPatient'));
     }
   }
@@ -45,21 +45,30 @@ export class UserService {
 
     let url = this.firebaseURL + '/users.json?orderBy="email"&equalTo="' + email + '"';
     return this.http.get(url)
-      .map(res => res)
+      .map(res => res);
   }
 
   updateUser(user: User) {
     let url = this.firebaseURL + 'users/' + this.user.id + '.json';
     let body = JSON.stringify(user);
-    console.log(body);
     let headers = new HttpHeaders({
       'Content-Type': 'aplication/json'
-    })
+    });
     return this.http.put(url, body, { headers })
       .map(res => {
         console.log(res);
         return res;
-      })
+      });
+  }
+
+  deleteUser(user: User) {
+    let url = this.firebaseURL + 'users/' + this.user.id + '.json';
+    console.log(url);
+    return this.http.delete(url)
+      .map(res => {
+        console.log(res);
+        return res;
+      });
   }
 
   doLogout(){
@@ -71,12 +80,12 @@ export class UserService {
     let body = JSON.stringify(user);
     let headers = new HttpHeaders({
       'Content-Type' : 'aplication/json'
-    })
+    });
 
     return this.http.post(url, body, { headers })
       .map(res => {
         return res;
-      })
+      });
 
   }
 

@@ -55,7 +55,7 @@ export class RegisterComponent {
 
     this._resourceService.getResource('languages')
       .subscribe(data => {
-        for (var x in data) {
+        for (let x in data) {
           if (data[x] != null) {
             this.languages.push(data[x]);
           }
@@ -64,7 +64,7 @@ export class RegisterComponent {
 
     this._resourceService.getResource('roles')
       .subscribe(data => {
-        for (var x in data) {
+        for (let x in data) {
           if (data[x] != null) {
             this.roles.push(data[x]);
           }
@@ -85,7 +85,7 @@ export class RegisterComponent {
     if (control.value !== forma.controls['password'].value) {
       return {
         notEqualsPass: true
-      }
+      };
     }
 
     return null;
@@ -100,7 +100,7 @@ export class RegisterComponent {
     if (control.value !== forma.controls['email'].value) {
       return {
         notEqualsMail: true
-      }
+      };
     }
 
     return null;
@@ -118,7 +118,7 @@ export class RegisterComponent {
       language: this.forma.value.language,
       role: this.forma.value.role,
       appointments: []
-      
+
   };
 
     this._userService.chekIfUserExists(this.user.email).subscribe(
@@ -127,21 +127,19 @@ export class RegisterComponent {
         if (!Object.keys(res).length){
           this._userService.newUser(this.user)
             .subscribe(data => {
-              this.message = 'Thanks for register. Now you can Login'
+              delete this.alert;
+              this.message = 'Thanks for register. Now you can Login';
               // this.router.navigate(['accountinfo']);
             },
               error => console.log(error)
             );
         }else{
+          delete this.message;
           this.alert = 'The user is already register';
         }
       }
     );
-
-    
-    // console.log(this.forma.value);
-    // this.auth.registerUser(this.forma.value);
-
+    window.scrollTo(0, 0);
   }
 
   resetRegisterForm() {
