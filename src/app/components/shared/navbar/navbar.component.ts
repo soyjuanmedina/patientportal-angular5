@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppSettings } from '../../../appSettings';
+import {TranslateService} from 'ng2-translate';
 declare var $:any; // TODO hide modal in othe way
 
 // Services
@@ -26,7 +27,8 @@ export class NavbarComponent implements OnInit {
   constructor(public router: Router,
     public _userService: UserService,
     public _authService: AuthService,
-    public _resourceService: ResourceService) {
+    public _resourceService: ResourceService,
+    public translate: TranslateService) {
   }
 
   ngOnInit() {
@@ -48,6 +50,10 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this._authService.logout();
+  }
+
+  changeLanguage(lang){
+    this.translate.use(lang);
   }
 
 }

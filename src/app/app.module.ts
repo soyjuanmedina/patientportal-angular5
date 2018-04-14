@@ -3,6 +3,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+// Translete
+import {TranslateService,
+  TranslateLoader,
+  TranslateStaticLoader} from 'ng2-translate/ng2-translate';
+import {TranslateModule} from 'ng2-translate';
+import {Http, HttpModule} from '@angular/http';
+
 // Routes
 import { AppRoutingModule } from './app.routes';
 
@@ -35,7 +42,13 @@ import { MyappointmentsComponent } from './components/user/myappointments/myappo
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    HttpModule,
+    TranslateModule.forRoot({
+      provide: TranslateLoader,
+      useFactory: (http: Http) => new TranslateStaticLoader(http, '/assets/i18n', '.json'),
+      deps: [Http]
+  })
   ],
   providers: [
     UserService,

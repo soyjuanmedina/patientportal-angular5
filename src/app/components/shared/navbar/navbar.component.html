@@ -4,6 +4,13 @@
     <ul class="navbar-nav mr-auto">
     </ul>
     <span class="navbar-text">
+      <select class="form-control form-control-sm" (change)="changeLanguage($event.target.value)">
+        <option value="en">English</option>
+        <option value="es">Español</option>
+      </select>
+      <div>
+        <p></p>
+      </div>
       <button class="btn btn-secondary-color btn-sm" data-toggle="modal" data-target="#LoginModal" *ngIf="!_userService.user">Login</button>
       <button class="btn btn-secondary-color btn-sm" (click)="logout()" *ngIf="_userService.user">Logout</button>
       <button [routerLink]="['register']" class="btn btn-secondary-color btn-sm" *ngIf="!_userService.user">Register</button>
@@ -22,7 +29,7 @@
         <a class="nav-link" [routerLink]="['myappointments']" *ngIf="_userService.user">My Appointments</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['bookappointments']">Bookappointments</a>
+        <a class="nav-link" [routerLink]="['bookappointments']">{{ 'BOOKAPPOINTMENTS' | translate }}</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['accountinfo']" *ngIf="_userService.user">Account info</a>
