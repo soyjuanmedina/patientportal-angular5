@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import {TranslateService} from 'ng2-translate';
 import 'rxjs/add/operator/map';
 
 // Interfaces
@@ -14,7 +15,8 @@ export class UserService {
   alert: string;
 
   constructor(public router: Router,
-    public http: HttpClient) {
+    public http: HttpClient,
+    public translate: TranslateService) {
     if (typeof sessionStorage.dataPatient !== 'undefined') {
       this.user = JSON.parse(sessionStorage.getItem('dataPatient'));
     }
@@ -31,7 +33,8 @@ export class UserService {
           this.user.appointments = [];
         }
         sessionStorage.setItem('dataPatient', JSON.stringify(this.user));
-        // this.router.navigate(['/myappointments']);
+        console.log(this.user);
+        this.translate.use(this.user.language);
       },
         response => {
       },

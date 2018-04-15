@@ -4,7 +4,7 @@
 
 <div *ngIf="_userService.user">
   <div class="alert alert-success" role="alert" *ngIf="!_userService.user.appointments.length">
-    You do not have any appointments yet
+      {{ 'YOU_DO_NOT_HAVE_APPOINTMENTS' | translate}}
   </div>
   
   <div class="card-deck" *ngIf="_userService.user.appointments.length">
@@ -14,13 +14,13 @@
           <small>{{ appointment.hour }}</small>
         </h5>
         <p class="card-text">
-          <b>Consultant:</b> {{ appointment.doctorName }}
+          <b>{{ 'CONSULTANT ' | translate}}:</b> {{ appointment.doctorName }}
           <br/>
-          <b>Department:</b> {{ appointment.department }}
+          <b>{{ 'DEPARTMENT ' | translate}}:</b> {{ appointment.department }}
           <br/>
         </p>
         <p class="card-text">
-          <small class="text-muted">Options</small><br />
+          <small class="text-muted">{{ 'OPTIONS ' | translate}}</small><br />
           <a [routerLink]="" class="fas fa-trash-alt secondary-color" data-toggle="modal" data-target="#CancelAppointmentModal"
              (click)="selectSlotToCancel(appointment, i)"></a> | 
         </p>
@@ -38,24 +38,24 @@
 
       <!-- Modal Header -->
       <div class="modal-body"><div class="modal-header">
-        <h4 class="modal-title">Are you sure?</h4>
+        <h4 class="modal-title">{{ 'ARE_YOU_SURE ' | translate}}</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
       <!-- Modal body -->
       <div class="modal-body">
       <p>
-        Do you really want to delete your appointment to day {{selectedSlotToCancel?.date}} at {{selectedSlotToCancel?.hour}}
+          {{ 'DO_YOU_WANT_DELETE_APPOINTMENT' | translate}} {{selectedSlotToCancel?.date}} at {{selectedSlotToCancel?.hour}}
       </p>
         <div class="row">
           <div class="form-group col-md-6">
             <button type="submit" class="btn btn-main-color btn-block" (click)="deleteAppointment()" data-dismiss="modal">
-              Yes
+              {{ 'YES ' | translate}}
             </button>
           </div>
           <div class="col-md-6">
             <button type="submit" class="btn btn-secondary btn-block" data-dismiss="modal">
-              No
+              {{ 'NO ' | translate}}
             </button>
           </div>
         </div>

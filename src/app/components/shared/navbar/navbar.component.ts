@@ -53,6 +53,7 @@ export class NavbarComponent implements OnInit {
   }
 
   changeLanguage(lang){
+    console.log(lang);
     this.translate.use(lang);
   }
 

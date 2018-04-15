@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import {TranslateService} from 'ng2-translate';
 import 'rxjs/add/operator/map';
 
 // Interfaces
@@ -18,7 +19,8 @@ export class AuthService {
   constructor(public router: Router,
     public http: HttpClient,
     public _userService: UserService,
-    public _resourceService: ResourceService) { }
+    public _resourceService: ResourceService,
+    public translate: TranslateService) { }
 
   loginUser(username, password){
     let url = this.firebaseURL + '/users.json?orderBy="email"&equalTo="' + username + '"';
@@ -50,6 +52,7 @@ export class AuthService {
     this.router.navigate(['/bookappointments']);
     delete this._resourceService.selectedFreeslot;
     this._userService.doLogout();
+    this.translate.use(this._resourceService.defaultLanguage);
   }
 
 }

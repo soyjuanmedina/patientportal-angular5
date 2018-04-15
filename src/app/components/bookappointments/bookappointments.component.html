@@ -1,5 +1,5 @@
-<h4 *ngIf="hospitals?.length == 1">Book appointments for {{hospitals[0].name}}</h4>
-<h4 *ngIf="hospitals?.length > 1">Book appointments</h4>
+<h4 *ngIf="hospitals?.length == 1">{{ 'BOOK_APPOINTMENTS_FOR ' | translate}}  {{hospitals[0].name}}</h4>
+<h4 *ngIf="hospitals?.length > 1">{{ 'BOOK_APPOINTMENTS ' | translate}}</h4>
 <hr>
 <form #forma="ngForm">
   <div class="form-row">
@@ -7,7 +7,7 @@
 
       <div class="row" *ngIf="hospitals?.length > 1">
         <div class="form-group col-md-12">
-          <label>Choose your Hospital</label>
+          <label>{{ 'CHOOSE_YOUR_HOSPITAL ' | translate}}</label>
           <div class="input-group mb-3">
             <select name="hospital" class="form-control" [(ngModel)]=searchterms.hospitalId>
               <option *ngFor="let hospital of hospitals" [value]="hospital.id">{{ hospital.name }}</option>
@@ -23,7 +23,7 @@
 
       <div class="row">
         <div class="form-group col-md-12">
-          <label>Source of funding</label>
+          <label>{{ 'SOURCE_OF_FUNDING ' | translate}}</label>
           <div class="input-group mb-3">
             <select name="payor" class="form-control" [(ngModel)]=searchterms.payorId>
               <option *ngFor="let payor of payors" [value]="payor.id">{{ payor.name }}</option>
@@ -39,7 +39,7 @@
       
       <div class="row">
         <div class="form-group col-md-12">
-          <label>Department</label>
+          <label>{{ 'DEPARTMENT ' | translate}}</label>
           <div class="input-group mb-3">
             <select name="department" class="form-control" [(ngModel)]=searchterms.departmentId [disabled]="!searchterms.hospitalId"
               (ngModelChange)="searchDoctors()">
@@ -59,7 +59,7 @@
 
       <div class="row">
         <div class="form-group col-md-12">
-          <label>Consultant</label>
+          <label>{{ 'CONSULTANT ' | translate}}</label>
           <div class="input-group mb-3">
             <select name="consultant" class="form-control" [(ngModel)]=searchterms.doctorId [disabled]="!doctors.length">
               <option *ngFor="let doctor of doctors" [value]="doctor.id">{{ doctor.name }}</option>
@@ -75,7 +75,7 @@
 
       <div class="row">
         <div class="form-group col-md-6 offset-md-3">
-          <label>Date</label>
+          <label>{{ 'DATE ' | translate}}</label>
           <input class="form-control" type="date" [value]="searchterms.date" name="date" [(ngModel)]=searchterms.date>
         </div>
       </div>
@@ -86,12 +86,12 @@
   <div class="row">
     <div class="form-group col-md-6">
       <button type="submit" class="btn btn-main-color btn-block" (click)="searchFreeSlots()">
-        Search
+        {{ 'SEARCH ' | translate}}
       </button>
     </div>
     <div class="col-md-6">
       <button class="btn btn-secondary-color btn-block"  (click)="reset()">
-        Reset
+        {{ 'RESET ' | translate}}
       </button>
     </div>
   </div>
@@ -102,14 +102,14 @@
 
 <div *ngIf="freeslots.length">
   <div id="no-more-tables">
-    <h4>Select your appointment</h4>
+    <h4>{{ 'SELECT_YOUR_APPOINTMENT ' | translate}}</h4>
     <table class="col-md-12 table table-striped">
       <thead class="thead-dark">
         <tr>
-          <th scope="col">Date</th>
-          <th scope="col">Hour</th>
-          <th scope="col">Consultant</th>
-          <th scope="col">Department</th>
+          <th scope="col">{{ 'DATE ' | translate}}</th>
+          <th scope="col">{{ 'HOUR ' | translate}}</th>
+          <th scope="col">{{ 'CONSULTANT ' | translate}}</th>
+          <th scope="col">{{ 'DEPARTMENT ' | translate}}</th>
         </tr>
       </thead>
       <tbody>
@@ -132,7 +132,7 @@
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Your selection</h4>
+        <h4 class="modal-title">{{ 'YOUR_SELECTION ' | translate}}</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
@@ -140,7 +140,7 @@
       <div class="modal-body">
         <div class="card">
           <div class="card-header">
-            Date: {{_resourceService.selectedFreeslot.date}} | Hour: {{_resourceService.selectedFreeslot.hour}}
+            {{ 'DATE ' | translate}}: {{_resourceService.selectedFreeslot.date}} | Hour: {{_resourceService.selectedFreeslot.hour}}
           </div>
           <div class="card-body">
             <h5 class="card-title">{{_resourceService.selectedFreeslot.doctorName}}</h5>
@@ -149,29 +149,29 @@
             <div class="row" *ngIf="!_userService.user">
               <div class="form-group col-md-4">
                 <button class="btn btn-main-color btn-block" data-toggle="modal" data-target="#LoginModal" data-dismiss="modal">
-                  Login
+                  {{ 'LOGIN' | translate}}
                 </button>
               </div>
               <div class="form-group col-md-4">
                 <button class="btn btn-main-color btn-block" data-dismiss="modal" (click)="goRegister()">
-                  Register
+                  {{ 'REGISTER' | translate}}
                 </button>
               </div>
               <div class="col-md-4">
                 <button class="btn btn-secondary-color btn-block" data-dismiss="modal">
-                  Cancel
+                  {{ 'CANCEL' | translate}}
                 </button>
               </div>
             </div>
             <div class="row" *ngIf="_userService.user">
               <div class="form-group col-md-6">
                 <button type="submit" class="btn btn-main-color btn-block" data-dismiss="modal" (click)="bookSlot(_resourceService.selectedFreeslot)">
-                  Book
+                  {{ 'BOOK ' | translate}}
                 </button>
               </div>
               <div class="col-md-6">
                 <button class="btn btn-secondary-color btn-block" data-dismiss="modal">
-                  Cancel
+                  {{ 'CANCEL' | translate}}
                 </button>
               </div>
             </div>

@@ -21,9 +21,6 @@ export class RegisterComponent {
 
   forma: FormGroup;
 
-  languages = [];
-  roles = [];
-
   user: User = {
     name: '',
     lastname: '',
@@ -49,27 +46,10 @@ export class RegisterComponent {
       'password': new FormControl({ value: 'demo', disabled: true }),
       'confirmpassword': new FormControl({ value: 'demo', disabled: true }),
       'phoneNumber': new FormControl('', Validators.required),
-      'language': new FormControl,
-      'role': new FormControl,
+      'language': new FormControl('', Validators.required),
+      'role': new FormControl('', Validators.required),
     });
 
-    this._resourceService.getResource('languages')
-      .subscribe(data => {
-        for (let x in data) {
-          if (data[x] != null) {
-            this.languages.push(data[x]);
-          }
-        }
-      });
-
-    this._resourceService.getResource('roles')
-      .subscribe(data => {
-        for (let x in data) {
-          if (data[x] != null) {
-            this.roles.push(data[x]);
-          }
-        }
-      });
   }
 
   ngOnInit() {
@@ -123,7 +103,7 @@ export class RegisterComponent {
 
     this._userService.chekIfUserExists(this.user.email).subscribe(
       res =>{
-        console.log(Object.keys(res).length);
+        console.log(this.forma.value);
         if (!Object.keys(res).length){
           this._userService.newUser(this.user)
             .subscribe(data => {
@@ -143,8 +123,7 @@ export class RegisterComponent {
   }
 
   resetRegisterForm() {
-    console.log('reset');
-    // this.forma.reset(this.user);
+    this.forma.reset(this.user);
   }
 
 }
