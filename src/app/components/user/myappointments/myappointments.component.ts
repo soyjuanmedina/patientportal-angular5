@@ -12,7 +12,7 @@ export class MyappointmentsComponent implements OnInit {
 
   selectedSlotToCancel: any;
 
-  constructor(public _userService: UserService) { 
+  constructor(public _userService: UserService) {
   }
 
   deleteAppointment(){

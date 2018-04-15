@@ -17,11 +17,6 @@ export class BookappointmentsComponent {
 
   patient;
 
-  hospitals = [];
-  payors = [];
-  departments = [];
-  doctors = [];
-  specialties = [];
   dates;
   freeslots = [];
 
@@ -38,32 +33,6 @@ export class BookappointmentsComponent {
   constructor(public router: Router,
     public _resourceService: ResourceService,
     public _userService: UserService) {
-    this._resourceService.getResource('hospitals')
-      .subscribe(data => {
-        for (var x in data) {
-          if (data[x] != null){
-            this.hospitals.push(data[x]);
-          }  
-        }
-      });
-
-    this._resourceService.getResource('payors')
-      .subscribe(data => {
-        for (var x in data) {
-          if (data[x] != null) {
-            this.payors.push(data[x]);
-          }
-        }
-      });
-
-    this._resourceService.getResource('departments')
-      .subscribe(data => {
-        for (var x in data) {
-          if (data[x] != null) {
-            this.departments.push(data[x]);
-          }
-        }
-      });
   }
 
   searchFreeSlots(){
@@ -78,15 +47,7 @@ export class BookappointmentsComponent {
   }
 
   searchDoctors(){
-    this.doctors = [];
-    this._resourceService.getNodofromResourceId('doctors', 'departments', this.searchterms.departmentId)
-      .subscribe(data => {
-        for (var x in data) {
-          if (data[x] != null) {
-            this.doctors.push(data[x]);
-          }
-        }
-      });
+    this._resourceService.searchDoctors(this.searchterms.departmentId);
   }
 
   sendFreeslot(freeslot) {

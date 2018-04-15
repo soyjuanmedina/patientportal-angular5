@@ -33,7 +33,6 @@ export class UserService {
           this.user.appointments = [];
         }
         sessionStorage.setItem('dataPatient', JSON.stringify(this.user));
-        console.log(this.user);
         this.translate.use(this.user.language);
       },
         response => {
