@@ -32,7 +32,11 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
+    delete this._userService.danger;
+    delete this._userService.warning;
+    delete this._userService.success;
   }
+
 
   doLogin() {
     if (this.login.password !=='12345'){

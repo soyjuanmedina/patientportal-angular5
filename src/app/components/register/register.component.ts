@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 import { Router } from '@angular/router';
+import { TranslateService } from 'ng2-translate';
 
 // Interfaces
 import { User } from '../../interfaces/user.interface';
@@ -33,6 +34,7 @@ export class RegisterComponent {
 
   constructor(public _userService: UserService,
     public _resourceService: ResourceService,
+    public translate: TranslateService,
     public router: Router) {
 
     this.forma = new FormGroup({
@@ -103,19 +105,8 @@ export class RegisterComponent {
 
     this._userService.chekIfUserExists(this.user.email).subscribe(
       res =>{
-        console.log(this.forma.value);
         if (!Object.keys(res).length){
-          this._userService.newUser(this.user)
-            .subscribe(data => {
-              delete this.alert;
-              this.message = 'Thanks for register. Now you can Login';
-              // this.router.navigate(['accountinfo']);
-            },
-              error => console.log(error)
-            );
-        }else{
-          delete this.message;
-          this.alert = 'The user is already register';
+          this._userService.newUser(this.user).subscribe();
         }
       }
     );

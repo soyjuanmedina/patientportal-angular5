@@ -60,5 +60,8 @@
     "YES ": "Sí",
     "NO ": "No",
     "DELETE_ACCOUNT ": "Borrar cuenta ",
-    "DO_YOU_WANT_DELETE_ACCOUNT ": "¿De verdad quieres borrar tu cuenta?"
+    "DO_YOU_WANT_DELETE_ACCOUNT ": "¿De verdad quieres borrar tu cuenta?",
+    "THE_USER_ALREADY_REGISTER": "El usuario ya está registrado",
+    "THANKS_FOR_REGISTER": "Gracias por registrarse Ahora puedes iniciar sesión",
+    "SCHEDULE": "Horario"
 }

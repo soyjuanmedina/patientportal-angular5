@@ -12,7 +12,9 @@ export class UserService {
 
   firebaseURL = 'https://patient-portal-a6c57.firebaseio.com/';
   user: any;
-  alert: string;
+  danger: string;
+  warning: string;
+  success: string;
 
   constructor(public router: Router,
     public http: HttpClient,
@@ -44,10 +46,17 @@ export class UserService {
   }
 
   chekIfUserExists(email){
-
     let url = this.firebaseURL + '/users.json?orderBy="email"&equalTo="' + email + '"';
     return this.http.get(url)
-      .map(res => res);
+      .map(res => {
+        delete this.danger;
+        delete this.success;
+        this.translate.get('THE_USER_ALREADY_REGISTER').subscribe(
+          translation => {
+            this.warning = translation;
+          });
+        return res;
+      });
   }
 
   updateUser(user: User) {
@@ -86,6 +95,12 @@ export class UserService {
 
     return this.http.post(url, body, { headers })
       .map(res => {
+        delete this.danger;
+        delete this.warning;
+        this.translate.get('THANKS_FOR_REGISTER').subscribe(
+          translation => {
+            this.success = translation;
+          });
         return res;
       });
 

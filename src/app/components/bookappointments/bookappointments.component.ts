@@ -26,7 +26,8 @@ export class BookappointmentsComponent {
     departmentId: null,
     doctorId: null,
     specialtyId: null,
-    date: moment().add(1, 'days').format('YYYY-MM-DD')
+    date: moment().add(1, 'days').format('YYYY-MM-DD'),
+    scheduleId: null,
   };
 
 
@@ -69,6 +70,7 @@ export class BookappointmentsComponent {
       doctorId: null,
       specialtyId: null,
       date: moment().add(1, 'days').format('YYYY-MM-DD'),
+      scheduleId: null,
     };
     this.freeslots = [];
   }

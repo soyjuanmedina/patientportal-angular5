@@ -4,7 +4,6 @@
 <form #forma="ngForm">
   <div class="form-row">
     <div class="col-md-6">
-
       <div class="row" *ngIf="_resourceService.hospitals?.length > 1">
         <div class="form-group col-md-12">
           <label>{{ 'CHOOSE_YOUR_HOSPITAL ' | translate}}</label>
@@ -74,7 +73,22 @@
       </div>
 
       <div class="row">
-        <div class="form-group col-md-6 offset-md-3">
+        
+        <div class="form-group col-md-6">
+          <label>{{ 'SCHEDULE' | translate}}</label>
+          <div class="input-group mb-3">
+            <select name="schedule" class="form-control" [(ngModel)]=searchterms.scheduleId>
+              <option *ngFor="let schedule of _resourceService.schedules" [value]="schedule.id">{{ schedule.name }}</option>
+            </select>
+            <div class="input-group-append">
+              <button class="input-group-text" (click)="searchterms.scheduleId = null">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-6">
           <label>{{ 'DATE ' | translate}}</label>
           <input class="form-control" type="date" [value]="searchterms.date" name="date" [(ngModel)]=searchterms.date>
         </div>

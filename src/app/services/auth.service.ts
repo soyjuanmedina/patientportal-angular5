@@ -28,9 +28,9 @@ export class AuthService {
       .subscribe(
       RES => {
         if (!Object.keys(RES).length){
-          this._userService.alert = "The user don't exits, please register it";
+          this._userService.danger = "The user don't exits, please register it";
         } else{
-          delete this._userService.alert;
+          delete this._userService.danger;
           if (!this._resourceService.selectedFreeslot){
             this.router.navigate(['/myappointments']);
           }

@@ -13,6 +13,7 @@ export class ResourceService {
   doctors = [];
   languages = [];
   roles = [];
+  schedules = [];
   defaultLanguage;
 
   constructor(public http: HttpClient) {
@@ -60,6 +61,15 @@ export class ResourceService {
         for (let x in data) {
           if (data[x] != null) {
             this.roles.push(data[x]);
+          }
+        }
+      });
+
+    this.getResource('schedules')
+      .subscribe(data => {
+        for (let x in data) {
+          if (data[x] != null) {
+            this.schedules.push(data[x]);
           }
         }
       });
