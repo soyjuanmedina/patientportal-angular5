@@ -53,7 +53,6 @@ export class ResourceService {
           }
         }
         this.defaultLanguage = this.languages[0].id;
-        console.log(this.defaultLanguage);
       });
 
     this.getResource('roles')

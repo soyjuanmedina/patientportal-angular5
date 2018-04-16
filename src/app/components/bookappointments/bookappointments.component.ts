@@ -8,6 +8,9 @@ import * as moment from 'moment';
 import { ResourceService } from "../../services/resource.service";
 import { UserService } from "../../services/user.service";
 
+// Interfaces
+import { Searchterms } from '../../interfaces/searchterms.interface';
+
 
 @Component({
   selector: 'app-bookappointments',
@@ -20,7 +23,7 @@ export class BookappointmentsComponent {
   dates;
   freeslots = [];
 
-  searchterms: any = {
+  searchterms: Searchterms = {
     hospitalId: null,
     payorId: null,
     departmentId: null,
