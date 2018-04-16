@@ -10,6 +10,7 @@ import { UserService } from "../../../services/user.service";
 })
 export class MyappointmentsComponent implements OnInit {
 
+  c: any;
   selectedSlotToCancel: any;
 
   constructor(public _userService: UserService) {
@@ -21,7 +22,7 @@ export class MyappointmentsComponent implements OnInit {
   }
 
   selectSlotToCancel(slot, index){
-    this.selectedSlotToCancel = index;
+    this.selectedSlotToCancel = slot;
   }
 
   ngOnInit() {

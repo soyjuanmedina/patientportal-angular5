@@ -115,28 +115,28 @@
 </div>
 
 <div *ngIf="freeslots.length">
-  <div id="no-more-tables">
-    <h4>{{ 'SELECT_YOUR_APPOINTMENT ' | translate}}</h4>
-    <table class="col-md-12 table table-striped">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">{{ 'DATE ' | translate}}</th>
-          <th scope="col">{{ 'HOUR ' | translate}}</th>
-          <th scope="col">{{ 'CONSULTANT ' | translate}}</th>
-          <th scope="col">{{ 'DEPARTMENT ' | translate}}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let freeslot of freeslots" data-toggle="modal" data-target="#FreeSlotModal" (click)="sendFreeslot(freeslot)">
-          <th>{{freeslot.date}}</th>
-          <th>{{freeslot.hour}}</th>
-          <th>{{freeslot.doctorName}}</th>
-          <th>{{freeslot.department}}</th>
-        </tr>
-      </tbody>
-    </table>
+  <h4>{{ 'SELECT_YOUR_APPOINTMENT ' | translate}}</h4>
+  <div  *ngFor="let freeslot of freeslots; let i = index">
+    <div class="card sm-12" data-toggle="modal" data-target="#FreeSlotModal">
+      <div class="card-header btn-main-color">{{ 'CONSULTANT ' | translate}}: {{freeslot.doctorName}}</div>
+      <div class="card-body">
+        <h5 class="card-title">{{ 'DEPARTMENT ' | translate}}: {{freeslot.department}}</h5>
+        <p class="card-text">{{ 'DATE ' | translate}}: {{freeslot.date}} | {{ 'HOUR ' | translate}}: {{freeslot.hour}}</p>
+        <small class="text-muted">{{ 'OPTIONS ' | translate}}</small>
+        <br />
+        <button type="button"  class="btn background-main-color" (click)="sendFreeslot(freeslot)"> 
+          {{ 'BOOK ' | translate}}
+        </button>
+        <button type="button" class="btn background-secondary-color" (click)="discardFreeslot(i)"> 
+          {{ 'DISCARD' | translate}}
+        </button>
+      </div>
+    </div>
+    <br />
+    <br />
   </div>
 </div>
+
 
 
 <!-- The FreeSlot Modal -->
@@ -172,7 +172,7 @@
                 </button>
               </div>
               <div class="col-md-4">
-                <button class="btn btn-secondary-color btn-block" data-dismiss="modal">
+                <button class="btn btn-secondary-color btn-block" data-dismiss="modal" (click)="cancelSelectedfreeslot()">
                   {{ 'CANCEL' | translate}}
                 </button>
               </div>
@@ -184,7 +184,7 @@
                 </button>
               </div>
               <div class="col-md-6">
-                <button class="btn btn-secondary-color btn-block" data-dismiss="modal">
+                <button class="btn btn-secondary-color btn-block" data-dismiss="modal"  (click)="cancelSelectedfreeslot()">
                   {{ 'CANCEL' | translate}}
                 </button>
               </div>
@@ -192,7 +192,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </div>

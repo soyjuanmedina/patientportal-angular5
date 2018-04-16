@@ -63,6 +63,8 @@
     "DO_YOU_WANT_DELETE_ACCOUNT ": "Do you really want to delete your account ",
     "THE_USER_ALREADY_REGISTER": "The user is already register",
     "THANKS_FOR_REGISTER": "Thanks for register. Now you can Login",
-    "SCHEDULE": "Schedule"
+    "SCHEDULE": "Schedule",
+    "DISCARD": "Discard",
+    "DELETE": "Delete"
 
 }

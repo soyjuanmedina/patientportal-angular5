@@ -20,7 +20,6 @@ export class BookappointmentsComponent {
 
   patient;
 
-  dates;
   freeslots = [];
 
   searchterms: Searchterms = {
@@ -40,6 +39,7 @@ export class BookappointmentsComponent {
   }
 
   searchFreeSlots(){
+    this.freeslots = [];
     this._resourceService.getResource('freeslots')
       .subscribe(data => {
         for (var x in data) {
@@ -56,6 +56,10 @@ export class BookappointmentsComponent {
 
   sendFreeslot(freeslot) {
     this._resourceService.selectedFreeslot = freeslot;
+  }
+
+  cancelSelectedfreeslot() {
+    delete this._resourceService.selectedFreeslot;
   }
 
   bookSlot(selectedFreeslot){
@@ -80,6 +84,10 @@ export class BookappointmentsComponent {
 
   goRegister() {
     this.router.navigate(['/register']);
+  }
+
+  discardFreeslot(id){
+    this.freeslots.splice(id, 1);
   }
 
 }

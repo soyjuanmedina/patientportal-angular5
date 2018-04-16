@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 // Translete
 import {TranslateService,
   TranslateLoader,
@@ -39,6 +42,7 @@ import { MyappointmentsComponent } from './components/user/myappointments/myappo
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,

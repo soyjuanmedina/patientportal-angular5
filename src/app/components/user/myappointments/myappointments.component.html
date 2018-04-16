@@ -6,27 +6,27 @@
   <div class="alert alert-success" role="alert" *ngIf="!_userService.user.appointments.length">
       {{ 'YOU_DO_NOT_HAVE_APPOINTMENTS' | translate}}
   </div>
-  
-  <div class="card-deck" *ngIf="_userService.user.appointments.length">
-    <div class="card" *ngFor="let appointment of _userService.user.appointments; let i = index">
-      <div class="card-body">
-        <h5 class="card-title">{{ appointment.date }}:
-          <small>{{ appointment.hour }}</small>
-        </h5>
-        <p class="card-text">
-          <b>{{ 'CONSULTANT ' | translate}}:</b> {{ appointment.doctorName }}
-          <br/>
-          <b>{{ 'DEPARTMENT ' | translate}}:</b> {{ appointment.department }}
-          <br/>
-        </p>
-        <p class="card-text">
-          <small class="text-muted">{{ 'OPTIONS ' | translate}}</small><br />
-          <a [routerLink]="" class="fas fa-trash-alt secondary-color" data-toggle="modal" data-target="#CancelAppointmentModal"
-             (click)="selectSlotToCancel(appointment, i)"></a> | 
-        </p>
+
+  <div *ngIf="_userService.user.appointments.length">
+    <h4>{{ 'SELECT_YOUR_APPOINTMENT ' | translate}}</h4>
+    <div *ngFor="let appointment of _userService.user.appointments; let i = index">
+      <div class="card sm-12">
+        <div class="card-header btn-main-color">{{ 'CONSULTANT ' | translate}}: {{appointment.doctorName}}</div>
+        <div class="card-body">
+          <h5 class="card-title">{{ 'DEPARTMENT ' | translate}}: {{appointment.department}}</h5>
+          <p class="card-text">{{ 'DATE ' | translate}}: {{appointment.date}} | {{ 'HOUR ' | translate}}: {{appointment.hour}}</p>
+          <small class="text-muted">{{ 'OPTIONS ' | translate}}</small>
+          <br />
+          <button type="button" class="btn background-secondary-color" data-toggle="modal" data-target="#CancelAppointmentModal" (click)="selectSlotToCancel(appointment, i)">
+            {{ 'DELETE' | translate}}
+          </button>
+        </div>
       </div>
+      <br />
+      <br />
     </div>
   </div>
+  
 </div>
 
 
