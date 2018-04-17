@@ -29,6 +29,7 @@ import { BookappointmentsComponent } from './components/bookappointments/bookapp
 import { RegisterComponent } from './components/register/register.component';
 import { AccountinfoComponent } from './components/user/accountinfo/accountinfo.component';
 import { MyappointmentsComponent } from './components/user/myappointments/myappointments.component';
+import { AdminComponent } from './components/user/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { MyappointmentsComponent } from './components/user/myappointments/myappo
     BookappointmentsComponent,
     RegisterComponent,
     AccountinfoComponent,
-    MyappointmentsComponent
+    MyappointmentsComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

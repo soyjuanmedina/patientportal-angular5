@@ -28,6 +28,9 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['admin']" *ngIf="_userService.user?.role == '2'">{{ 'ADMIN' | translate}} </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['myappointments']" *ngIf="_userService.user">{{ 'MY_APPOINTMENTS' | translate}}        </a>
       </li>
       <li class="nav-item" routerLinkActive="active">

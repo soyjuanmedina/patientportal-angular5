@@ -8,8 +8,11 @@ import { AppSettings } from '../../../appSettings';
 })
 export class FooterComponent implements OnInit {
 
-  ADDRESS = AppSettings.ADDRESS;
   NAME = AppSettings.NAME;
+  ADDRESS = AppSettings.ADDRESS;
+  PHONE = AppSettings.PHONE;
+  EMAIL = AppSettings.EMAIL;
+  
 
   constructor() { }
 
