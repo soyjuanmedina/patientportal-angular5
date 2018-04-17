@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-
+// Angular animations
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Translete
