@@ -3,13 +3,13 @@
 </div>
 
 <div *ngIf="_userService.user">
-  <div class="alert alert-success" role="alert" *ngIf="!_userService.user.appointments.length">
+  <div class="alert alert-success" role="alert" *ngIf="!_userService.user.appointments.length"  [@divState]="state">
       {{ 'YOU_DO_NOT_HAVE_APPOINTMENTS' | translate}}
   </div>
 
   <div *ngIf="_userService.user.appointments.length">
     <h4>{{ 'SELECT_YOUR_APPOINTMENT ' | translate}}</h4>
-    <div *ngFor="let appointment of _userService.user.appointments; let i = index">
+    <div *ngFor="let appointment of _userService.user.appointments; let i = index"  [@divState]="state">
       <div class="card sm-12">
         <div class="card-header btn-main-color">{{ 'CONSULTANT ' | translate}}: {{appointment.doctorName}}</div>
         <div class="card-body">

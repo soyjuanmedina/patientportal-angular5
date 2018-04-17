@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { SystemJsNgModuleLoaderConfig } from '@angular/core/src/linker/system_js_ng_module_factory_loader';
 import * as moment from 'moment';
 
+// Animations
+import { trigger, state, style, animate, transition, keyframes } from '@angular/animations';
+
 // Services
 import { ResourceService } from "../../services/resource.service";
 import { UserService } from "../../services/user.service";
@@ -15,6 +18,25 @@ import { Searchterms } from '../../interfaces/searchterms.interface';
 @Component({
   selector: 'app-bookappointments',
   templateUrl: './bookappointments.component.html',
+  animations: [
+    trigger('divState', [
+      state('in', style({ transform: 'translateX(0)' })),
+      transition('void => *', [
+        animate(1000, keyframes([
+          style({ opacity: 0, transform: 'translateX(-100%)', offset: 0 }),
+          style({ opacity: 1, transform: 'translateX(15px)', offset: 0.3 }),
+          style({ opacity: 1, transform: 'translateX(0)', offset: 1.0 })
+        ]))
+      ]),
+      transition('* => void', [
+        animate(500, keyframes([
+          style({ opacity: 1, transform: 'translateX(0)', offset: 0 }),
+          style({ opacity: 0.5, transform: 'translateX(-15px)', offset: 0.7 }),
+          style({ opacity: 0, transform: 'translateX(100%)', offset: 1.0 })
+        ]))
+      ])
+    ])
+  ],
 })
 export class BookappointmentsComponent {
 
@@ -37,6 +59,7 @@ export class BookappointmentsComponent {
     public _resourceService: ResourceService,
     public _userService: UserService) {
   }
+
 
   searchFreeSlots(){
     this.freeslots = [];

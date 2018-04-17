@@ -1,6 +1,7 @@
 <h4 *ngIf="_resourceService.hospitals?.length == 1">{{ 'BOOK_APPOINTMENTS_FOR ' | translate}}  {{hospitals[0].name}}</h4>
 <h4 *ngIf="_resourceService.hospitals?.length > 1">{{ 'BOOK_APPOINTMENTS ' | translate}}</h4>
 <hr>
+
 <form #forma="ngForm">
   <div class="form-row">
     <div class="col-md-6">
@@ -116,7 +117,7 @@
 
 <div *ngIf="freeslots.length">
   <h4>{{ 'SELECT_YOUR_APPOINTMENT ' | translate}}</h4>
-  <div  *ngFor="let freeslot of freeslots; let i = index">
+  <div  *ngFor="let freeslot of freeslots; let i = index"  [@divState]="state">
     <div class="card sm-12" data-toggle="modal" data-target="#FreeSlotModal">
       <div class="card-header btn-main-color">{{ 'CONSULTANT ' | translate}}: {{freeslot.doctorName}}</div>
       <div class="card-body">
