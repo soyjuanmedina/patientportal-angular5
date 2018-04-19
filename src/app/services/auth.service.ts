@@ -5,7 +5,7 @@ import {TranslateService} from 'ng2-translate';
 import 'rxjs/add/operator/map';
 
 // Interfaces
-import { User } from '../interfaces/user.interface';
+import { UserInterface } from '../interfaces/index.interface';
 
 // Services
 import { UserService } from "./user.service";

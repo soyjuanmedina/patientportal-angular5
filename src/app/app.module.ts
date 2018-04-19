@@ -17,19 +17,20 @@ import {Http, HttpModule} from '@angular/http';
 import { AppRoutingModule } from './app.routes';
 
 // Services
-import { UserService } from "./services/user.service";
-import { AuthService } from "./services/auth.service";
-import { ResourceService } from "./services/resource.service";
+import { UserService,
+  AuthService,
+  ResourceService } from "./services/index.service";
 
 // Components
-import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/shared/navbar/navbar.component';
-import { FooterComponent } from './components/shared/footer/footer.component';
-import { BookappointmentsComponent } from './components/bookappointments/bookappointments.component';
-import { RegisterComponent } from './components/register/register.component';
-import { AccountinfoComponent } from './components/user/accountinfo/accountinfo.component';
-import { MyappointmentsComponent } from './components/user/myappointments/myappointments.component';
-import { AdminComponent } from './components/user/admin/admin.component';
+import { AppComponent,
+  NavbarComponent,
+  FooterComponent,
+  BookappointmentsComponent,
+  RegisterComponent,
+  AccountinfoComponent,
+  MyappointmentsComponent,
+  AdminComponent } from "./components/index.components";
+
 
 @NgModule({
   declarations: [

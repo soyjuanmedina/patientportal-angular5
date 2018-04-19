@@ -2,9 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 // Services
-import { UserService } from "../../../services/user.service";
-import { AuthService } from "../../../services/auth.service";
-
+import { UserService,
+  AuthService } from "../../../services/index.service";
 
 @Component({
   selector: "app-accountinfo",

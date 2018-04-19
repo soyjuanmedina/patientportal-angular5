@@ -5,11 +5,11 @@ import { Router } from '@angular/router';
 import { TranslateService } from 'ng2-translate';
 
 // Interfaces
-import { User } from '../../interfaces/user.interface';
+import { UserInterface } from '../../interfaces/index.interface';
 
 // Services
-import { UserService } from "../../services/user.service";
-import { ResourceService } from "../../services/resource.service";
+import { UserService,
+  ResourceService } from "../../services/index.service";
 
 @Component({
   selector: 'app-register',
@@ -22,7 +22,7 @@ export class RegisterComponent {
 
   forma: FormGroup;
 
-  user: User = {
+  user: UserInterface = {
     name: '',
     lastname: '',
     email: '',

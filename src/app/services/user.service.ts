@@ -5,7 +5,7 @@ import {TranslateService} from 'ng2-translate';
 import 'rxjs/add/operator/map';
 
 // Interfaces
-import { User } from '../interfaces/user.interface';
+import { UserInterface } from '../interfaces/index.interface';
 
 @Injectable()
 export class UserService {
@@ -60,7 +60,8 @@ export class UserService {
       });
   }
 
-  updateUser(user: User) {
+  updateUser(user: UserInterface) {
+    sessionStorage.setItem('dataPatient', JSON.stringify(this.user));
     let url = this.firebaseURL + 'users/' + this.user.id + '.json';
     let body = JSON.stringify(user);
     let headers = new HttpHeaders({
@@ -68,17 +69,14 @@ export class UserService {
     });
     return this.http.put(url, body, { headers })
       .map(res => {
-        console.log(res);
         return res;
       });
   }
 
-  deleteUser(user: User) {
+  deleteUser(user: UserInterface) {
     let url = this.firebaseURL + 'users/' + this.user.id + '.json';
-    console.log(url);
     return this.http.delete(url)
       .map(res => {
-        console.log(res);
         return res;
       });
   }
@@ -87,7 +85,7 @@ export class UserService {
     delete this.user;
   }
 
-  newUser(user: User){
+  newUser(user: UserInterface){
     let url = this.firebaseURL + 'users.json';
     let body = JSON.stringify(user);
     let headers = new HttpHeaders({

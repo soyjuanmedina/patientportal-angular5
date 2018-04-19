@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition, keyframes} from '@angular/animations';
 
 // Services
-import { UserService } from "../../../services/user.service";
+import { UserService } from "../../../services/index.service";
 
 @Component({
   selector: 'app-myappointments',
@@ -31,18 +31,20 @@ import { UserService } from "../../../services/user.service";
 })
 export class MyappointmentsComponent implements OnInit {
 
-  c: any;
+  indexToCancel: number;
   selectedSlotToCancel: any;
 
   constructor(public _userService: UserService) {
   }
 
   deleteAppointment(){
-    this._userService.user.appointments.splice(this.selectedSlotToCancel, 1);
+    console.log(this.indexToCancel);
+    this._userService.user.appointments.splice(this.indexToCancel, 1);
     this._userService.updateUser(this._userService.user).subscribe();
   }
 
   selectSlotToCancel(slot, index){
+    this.indexToCancel = index;
     this.selectedSlotToCancel = slot;
   }
 

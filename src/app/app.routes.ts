@@ -3,11 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 // Components
-import { BookappointmentsComponent } from './components/bookappointments/bookappointments.component';
-import { MyappointmentsComponent } from './components/user/myappointments/myappointments.component';
-import { AccountinfoComponent } from './components/user/accountinfo/accountinfo.component';
-import { AdminComponent } from './components/user/admin/admin.component';
-import { RegisterComponent } from './components/register/register.component';
+// Components
+import {
+  BookappointmentsComponent,
+  MyappointmentsComponent,
+  AccountinfoComponent,
+  AdminComponent,
+  RegisterComponent
+} from "./components/index.components";
 
 // Routes configuration
 const appRoutes: Routes = [

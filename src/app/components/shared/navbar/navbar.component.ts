@@ -5,9 +5,9 @@ import {TranslateService} from 'ng2-translate';
 declare var $:any; // TODO hide modal in othe way
 
 // Services
-import { UserService } from "../../../services/user.service";
-import { AuthService } from "../../../services/auth.service";
-import { ResourceService } from "../../../services/resource.service";
+import { UserService,
+  AuthService,
+  ResourceService } from "../../../services/index.service";
 
 @Component({
   selector: 'app-navbar',

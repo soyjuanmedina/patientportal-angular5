@@ -8,11 +8,11 @@ import * as moment from 'moment';
 import { trigger, state, style, animate, transition, keyframes } from '@angular/animations';
 
 // Services
-import { ResourceService } from "../../services/resource.service";
-import { UserService } from "../../services/user.service";
+import { ResourceService,
+  UserService} from "../../services/index.service";
 
 // Interfaces
-import { Searchterms } from '../../interfaces/searchterms.interface';
+import { SearchtermsInterface } from '../../interfaces/index.interface';
 
 
 @Component({
@@ -44,7 +44,7 @@ export class BookappointmentsComponent {
 
   freeslots = [];
 
-  searchterms: Searchterms = {
+  searchterms: SearchtermsInterface = {
     hospitalId: null,
     payorId: null,
     departmentId: null,

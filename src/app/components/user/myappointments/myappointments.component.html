@@ -17,7 +17,8 @@
           <p class="card-text">{{ 'DATE ' | translate}}: {{appointment.date}} | {{ 'HOUR ' | translate}}: {{appointment.hour}}</p>
           <small class="text-muted">{{ 'OPTIONS ' | translate}}</small>
           <br />
-          <button type="button" class="btn background-secondary-color" data-toggle="modal" data-target="#CancelAppointmentModal" (click)="selectSlotToCancel(appointment, i)">
+          <button type="button" class="btn background-secondary-color" data-toggle="modal" data-target="#CancelAppointmentModal" 
+                (click)="selectSlotToCancel(appointment, i)">
             {{ 'DELETE' | translate}}
           </button>
         </div>

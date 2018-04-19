@@ -1,4 +1,4 @@
-export interface Searchterms {
+export interface SearchtermsInterface {
   hospitalId: string,
   payorId: string,
   departmentId: string,
