@@ -40,8 +40,8 @@ export class MyappointmentsComponent implements OnInit {
   }
 
   deleteAppointment(){
-    console.log(this.indexToCancel);
     this._userService.user.appointments.splice(this.indexToCancel, 1);
+    console.log(this._userService.user);
     this._userService.updateUser(this._userService.user).subscribe();
   }
 

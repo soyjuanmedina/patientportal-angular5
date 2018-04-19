@@ -65,5 +65,9 @@
     "THANKS_FOR_REGISTER": "Gracias por registrarse Ahora puedes iniciar sesión",
     "SCHEDULE": "Horario",
     "DISCARD": "Descartar",
-    "DELETE": "Borrar"
+    "DELETE": "Borrar",
+    "SAVE ": "Guardar",
+    "CONFIGURATION_FOR_THE _SITE": "Configuración del site",
+    "DO_YOU_WANT_SAVE_CONFIGURATION": "¿Guardar la nueva configuración?",
+    "CONFIGURATION": "Configuración"
 }

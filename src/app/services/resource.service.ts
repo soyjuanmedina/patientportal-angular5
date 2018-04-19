@@ -14,6 +14,7 @@ export class ResourceService {
   languages = [];
   roles = [];
   schedules = [];
+  configurationsParams = [];
   defaultLanguage;
 
   constructor(public http: HttpClient) {
@@ -98,6 +99,19 @@ export class ResourceService {
     let url = this.firebaseURL + resource + '/' + id + '/' + nodo + '.json';
     return this.http.get(url)
       .map(res => res);
+  }
+
+
+  updateResource(typeResource: string, resource: any) {
+    let url = this.firebaseURL + typeResource + '.json';
+    let body = JSON.stringify(resource);
+    let headers = new HttpHeaders({
+      'Content-Type': 'aplication/json'
+    });
+    return this.http.put(url, body, { headers })
+      .map(res => {
+        return res;
+      });
   }
 
 }

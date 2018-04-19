@@ -65,6 +65,9 @@
     "THANKS_FOR_REGISTER": "Thanks for register. Now you can Login",
     "SCHEDULE": "Schedule",
     "DISCARD": "Discard",
-    "DELETE": "Delete"
-
+    "DELETE": "Delete",
+    "SAVE ": "Save",
+    "CONFIGURATION_FOR_THE _SITE": "Configuration for the site",
+    "DO_YOU_WANT_SAVE_CONFIGURATION": "Do you want to save configuration",
+    "CONFIGURATION": "Configuration"
 }
