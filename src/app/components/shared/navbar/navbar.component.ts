@@ -47,7 +47,6 @@ export class NavbarComponent implements OnInit {
       $('#LoginModal').modal('hide');
       if (this._resourceService.selectedFreeslot){
         $('#FreeSlotModal').modal('show');
-
       }
     }
   }

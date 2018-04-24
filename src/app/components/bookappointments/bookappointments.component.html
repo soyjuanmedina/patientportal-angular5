@@ -143,7 +143,7 @@
 
 
 <!-- The FreeSlot Modal -->
-<div class="modal fade" id="FreeSlotModal" *ngIf="_resourceService.selectedFreeslot">
+<div class="modal fade" id="FreeSlotModal">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -157,11 +157,11 @@
       <div class="modal-body">
         <div class="card">
           <div class="card-header">
-            {{ 'DATE ' | translate}}: {{_resourceService.selectedFreeslot.date}} | Hour: {{_resourceService.selectedFreeslot.hour}}
+            {{ 'DATE ' | translate}}: {{_resourceService.selectedFreeslot?.date}} | Hour: {{_resourceService.selectedFreeslot?.hour}}
           </div>
           <div class="card-body">
-            <h5 class="card-title">{{_resourceService.selectedFreeslot.doctorName}}</h5>
-            <p class="card-text">Department: {{_resourceService.selectedFreeslot.department}}
+            <h5 class="card-title">{{_resourceService.selectedFreeslot?.doctorName}}</h5>
+            <p class="card-text">Department: {{_resourceService.selectedFreeslot?.department}}
             </p>
             <div class="row" *ngIf="!_userService.user">
               <div class="form-group col-md-4">

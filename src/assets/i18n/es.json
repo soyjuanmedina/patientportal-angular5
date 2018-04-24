@@ -56,7 +56,7 @@
     "YOU_DO_NOT_HAVE_APPOINTMENTS": "Todavía no tienes citas",
     "OPTIONS ": "Opciones",
     "ARE_YOU_SURE ": "Estás seguro",
-    "DO_YOU_WANT_DELETE_APPOINTMENT": "¿De verdad quieres eliminar tu cita de día?",
+    "DO_YOU_WANT_DELETE_APPOINTMENT": "¿De verdad quieres cancelar tu cita de día?",
     "YES ": "Sí",
     "NO ": "No",
     "DELETE_ACCOUNT ": "Borrar cuenta ",
@@ -65,9 +65,13 @@
     "THANKS_FOR_REGISTER": "Gracias por registrarse Ahora puedes iniciar sesión",
     "SCHEDULE": "Horario",
     "DISCARD": "Descartar",
-    "DELETE": "Borrar",
+    "DELETE": "Cancelar cita",
     "SAVE ": "Guardar",
     "CONFIGURATION_FOR_THE _SITE": "Configuración del site",
     "DO_YOU_WANT_SAVE_CONFIGURATION": "¿Guardar la nueva configuración?",
-    "CONFIGURATION": "Configuración"
+    "CONFIGURATION": "Configuración",
+    "THIS_ARE_YOUR_APPOINTMENTS": "Estas son tus próximas citas",
+    "WITH_DOCTOR": "con el médico",
+    "THE": "el",
+    "AT": "a las"
 }

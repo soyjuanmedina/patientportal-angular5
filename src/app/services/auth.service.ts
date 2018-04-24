@@ -31,7 +31,9 @@ export class AuthService {
           this._userService.danger = "The user don't exits, please register it";
         } else{
           delete this._userService.danger;
-          if (!this._resourceService.selectedFreeslot){
+          if (this._resourceService.selectedFreeslot){
+            this.router.navigate(['/bookappointments']);
+          } else{
             this.router.navigate(['/myappointments']);
           }
           sessionStorage.setItem('dataPatient', JSON.stringify(RES[Object.keys(RES)[0]]));

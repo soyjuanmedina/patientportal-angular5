@@ -69,5 +69,9 @@
     "SAVE ": "Save",
     "CONFIGURATION_FOR_THE _SITE": "Configuration for the site",
     "DO_YOU_WANT_SAVE_CONFIGURATION": "Do you want to save configuration",
-    "CONFIGURATION": "Configuration"
+    "CONFIGURATION": "Configuration",
+    "THIS_ARE_YOUR_APPOINTMENTS": "This are your appointments",
+    "WITH_DOCTOR": "with doctor",
+    "THE": "the",
+    "AT": "at"
 }

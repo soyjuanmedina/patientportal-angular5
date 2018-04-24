@@ -1,0 +1,67 @@
+<h4>{{ 'CONFIGURATION_FOR_THE _SITE' | translate}}</h4>
+<hr>
+<form [formGroup]="configurationForma">
+  <div class="form-group row" *ngFor="let configurationsParam of configurationsParams">
+    <label [for]="configurationsParam.name" class="col-sm-1 col-form-label">{{configurationsParam.name}}</label>
+    <div class="col-sm-11">
+      <input class="form-control" 
+        [ngModel]="configurationsParam.value"
+        [name]="configurationsParam.name"
+        type="text" 
+        [formControlName]="configurationsParam.name">
+    </div>
+  </div>
+
+  
+  <div class="row">
+    <div class="form-group col-md-6">
+      <button  data-toggle="modal" data-target="#SaveConfigurationModal" class="btn btn-main-color btn-block">
+        {{ 'SAVE ' | translate}}
+      </button>
+    </div>
+    <div class="col-md-6">
+      <button class="btn btn-secondary-color btn-block" (click)="reset()">
+        {{ 'RESET ' | translate}}
+      </button>
+    </div>
+    </div>
+
+</form>
+
+
+
+
+<!-- The SaveConfiguration Modal -->
+<div class="modal fade" id="SaveConfigurationModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-body">
+        <div class="modal-header">
+          <h4 class="modal-title">{{ 'ARE_YOU_SURE ' | translate}}</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <p>
+            {{ 'DO_YOU_WANT_SAVE_CONFIGURATION' | translate}}</p>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <button type="submit" class="btn btn-main-color btn-block" (click)="saveConfiguration()" data-dismiss="modal">
+                {{ 'YES ' | translate}}
+              </button>
+            </div>
+            <div class="col-md-6">
+              <button type="submit" class="btn btn-secondary btn-block" data-dismiss="modal">
+                {{ 'NO ' | translate}}
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -13,7 +13,7 @@
       <div>
         <p></p>
       </div>
-      <button class="btn btn-secondary-color btn-sm" data-toggle="modal" data-target="#LoginModal" *ngIf="!_userService.user">Login</button>
+      <button class="btn btn-secondary-color btn-sm" data-toggle="modal" data-target="#LoginModal" *ngIf="!_userService.user">{{ 'LOGIN' | translate }}</button>
       <button class="btn btn-secondary-color btn-sm" (click)="logout()" *ngIf="_userService.user">{{ 'LOGOUT' | translate }}      </button>
       <button [routerLink]="['register']" class="btn btn-secondary-color btn-sm" *ngIf="!_userService.user">{{ 'REGISTER' | translate }}      </button>
     </span>

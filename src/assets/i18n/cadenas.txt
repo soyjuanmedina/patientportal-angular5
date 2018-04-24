@@ -1,0 +1,74 @@
+Bookappointments
+Login
+New appointment
+Logout
+Register
+My Appointments
+Account info
+Authentication
+Username / Email
+Password
+Cancel
+Book appointments for 
+Book appointments 
+Choose your Hospital 
+Source of funding 
+Department 
+Consultant 
+Date 
+Search 
+Reset 
+Select your appointment 
+Hour 
+Your selection 
+Book 
+Name 
+The name is required 
+Last Name 
+The Last name is required 
+Email 
+The email is mandatory 
+The email is not valid. 
+Phone number 
+Language 
+Select your language 
+The language is mandatory. 
+Role 
+Select the role for the user 
+The role is mandatory. 
+User password in demo site is '12345'. 
+Retype password 
+The passwords are not equal 
+Contact Us 
+Enter email 
+Message 
+Send 
+Profile 
+Settings 
+If there is any discrepancies with the actual information, please contact the clinic directly 
+Change your email address 
+Retype email 
+The emails are not equal 
+Change mail 
+Change password 
+You do not have any appointments yet 
+Options 
+Are you sure 
+Do you really want to delete your appointment to day 
+Yes 
+No 
+Delete account 
+Do you really want to delete your account 
+The user is already register
+Thanks for register. Now you can Login
+Schedule
+Discard
+Delete
+Save
+Configuration for the site
+Do you want to save configuration
+Configuration
+This are your appointments
+with doctor
+the
+at
