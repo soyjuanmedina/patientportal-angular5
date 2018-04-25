@@ -55,7 +55,7 @@
     "CHANGE_PASSWORD ": "Change password ",
     "YOU_DO_NOT_HAVE_APPOINTMENTS": "You do not have any appointments yet ",
     "OPTIONS ": "Options ",
-    "ARE_YOU_SURE ": "Are you sure ",
+    "ARE_YOU_SURE ": "Are you sure?",
     "DO_YOU_WANT_DELETE_APPOINTMENT": "Do you really want to delete your appointment to day ",
     "YES ": "Yes ",
     "NO ": "No ",
@@ -73,5 +73,7 @@
     "THIS_ARE_YOUR_APPOINTMENTS": "This are your appointments",
     "WITH_DOCTOR": "with doctor",
     "THE": "the",
-    "AT": "at"
+    "AT": "at",
+    "ADD_TO_CALENDAR": "Add to calendar",
+    "PRINTAT": "Print"
 }

@@ -55,7 +55,7 @@
     "CHANGE_PASSWORD ": "Cambia la contraseña",
     "YOU_DO_NOT_HAVE_APPOINTMENTS": "Todavía no tienes citas",
     "OPTIONS ": "Opciones",
-    "ARE_YOU_SURE ": "Estás seguro",
+    "ARE_YOU_SURE ": "¿Estás seguro?",
     "DO_YOU_WANT_DELETE_APPOINTMENT": "¿De verdad quieres cancelar tu cita de día?",
     "YES ": "Sí",
     "NO ": "No",
@@ -73,5 +73,7 @@
     "THIS_ARE_YOUR_APPOINTMENTS": "Estas son tus próximas citas",
     "WITH_DOCTOR": "con el médico",
     "THE": "el",
-    "AT": "a las"
+    "AT": "a las",
+    "ADD_TO_CALENDAR": "Añadir al calendario",
+    "PRINTAT": "Imprimir"
 }

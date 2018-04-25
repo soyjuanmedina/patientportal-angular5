@@ -18,6 +18,12 @@
           <p class="card-text">{{ 'DATE ' | translate}}: {{appointment.date}} | {{ 'HOUR ' | translate}}: {{appointment.hour}}</p>
           <small class="text-muted">{{ 'OPTIONS ' | translate}}</small>
           <br />
+          <button type="button" class="btn background-secondary-color" (click)="print(appointment, i)">
+            {{ 'PRINT' | translate}}
+          </button>
+          <button type="button" class="btn background-secondary-color" (click)="addToCalendar(appointment, i)">
+            {{ 'ADD_TO_CALENDAR' | translate}}
+          </button>
           <button type="button" class="btn background-secondary-color" data-toggle="modal" data-target="#CancelAppointmentModal" 
                 (click)="selectSlotToCancel(appointment, i)">
             {{ 'DELETE' | translate}}

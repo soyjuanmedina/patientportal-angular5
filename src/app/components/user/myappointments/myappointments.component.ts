@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
+
+// ICS
+declare var ics;
+declare var FileSaver;
 
 // Animations
 import { trigger, state, style, animate, transition, keyframes, query, stagger} from '@angular/animations';
@@ -47,6 +52,21 @@ export class MyappointmentsComponent implements OnInit {
   selectSlotToCancel(slot, index){
     this.indexToCancel = index;
     this.selectedSlotToCancel = slot;
+  }
+
+  addToCalendar(slot, index){
+    console.log('addToCalendar', slot, index);
+    let cal = ics();
+    var message = "Appointment" + slot.doctorName;
+    var st = slot.date + ' ' + slot.hour;
+    var dateStart = moment(st);
+    var dateEnd = moment(st).add(30, 'minutes');
+    cal.addEvent(slot.department, message, 'Golden Mile 1\, Office 30 Palm Jumeirah', dateStart, dateEnd);
+    cal.download();
+  }
+
+  print(slot, index){
+    console.log('print', slot, index);
   }
 
   ngOnInit() {

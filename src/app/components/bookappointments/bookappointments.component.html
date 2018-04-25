@@ -119,14 +119,14 @@
   <h4>{{ 'SELECT_YOUR_APPOINTMENT ' | translate}}</h4>
   <div id="container" [@listAnimation]="freeslots.length">
   <div  *ngFor="let freeslot of freeslots; let i = index"  [@listAnimation]="state">
-    <div class="card sm-12" data-toggle="modal" data-target="#FreeSlotModal">
+    <div class="card sm-12">
       <div class="card-header btn-main-color">{{ 'CONSULTANT ' | translate}}: {{freeslot.doctorName}}</div>
       <div class="card-body">
         <h5 class="card-title">{{ 'DEPARTMENT ' | translate}}: {{freeslot.department}}</h5>
         <p class="card-text">{{ 'DATE ' | translate}}: {{freeslot.date}} | {{ 'HOUR ' | translate}}: {{freeslot.hour}}</p>
         <small class="text-muted">{{ 'OPTIONS ' | translate}}</small>
         <br />
-        <button type="button"  class="btn background-main-color" (click)="sendFreeslot(freeslot)"> 
+        <button type="button"   data-toggle="modal" data-target="#FreeSlotModal" class="btn background-main-color" (click)="sendFreeslot(freeslot)"> 
           {{ 'BOOK ' | translate}}
         </button>
         <button type="button" class="btn background-secondary-color" (click)="discardFreeslot(i)"> 
