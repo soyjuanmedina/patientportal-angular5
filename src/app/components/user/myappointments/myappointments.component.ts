@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 
+// Print
+import * as jsPDF from 'jspdf'
+
 // ICS
 declare var ics;
 declare var FileSaver;
@@ -67,6 +70,12 @@ export class MyappointmentsComponent implements OnInit {
 
   print(slot, index){
     console.log('print', slot, index);
+    var doc = new jsPDF();
+    doc.text(20, 20, "Appointment with" + slot.doctorName);
+    doc.text(20, 30, 'You have an appointment the' + slot.date + ' at ' + slot.hour);
+
+    // Save the PDF
+    doc.save('appointment.pdf');
   }
 
   ngOnInit() {

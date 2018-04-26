@@ -22,8 +22,8 @@
         "sass/styles.scss"
       ],
       "scripts": [
-        "../node_modules/ics/FileSaver.js",
-        "../node_modules/ics/ics.js"
+        "../src/assets/js/ics/FileSaver.js",
+        "../src/assets/js/ics/ics.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
