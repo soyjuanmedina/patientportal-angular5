@@ -69,7 +69,6 @@ export class MyappointmentsComponent implements OnInit {
   }
 
   print(slot, index){
-    console.log('print', slot, index);
     var doc = new jsPDF();
     doc.text(20, 20, "Appointment with" + slot.doctorName);
     doc.text(20, 30, 'You have an appointment the' + slot.date + ' at ' + slot.hour);
