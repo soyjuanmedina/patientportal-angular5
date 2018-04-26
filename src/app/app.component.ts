@@ -9,7 +9,6 @@ import { AppSettings } from '../app/appSettings';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Patient Portal';
 
   constructor(public translate: TranslateService,
    private titleService: Title) {

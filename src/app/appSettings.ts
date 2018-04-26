@@ -7,7 +7,7 @@ export class AppSettings {
   public static PHONE = '+34 666 666 666';
   public static EMAIL = 'email@email.com'  
   public static SITETITLE = 'Patient Portal - CommonsMS';
-  public static FAVICON = 'assets/img/favicon.gif';;
+  public static FAVICON = 'assets/img/favicon.gif';
 
   // public static LOGO = 'assets/img/logo-schon-clinic-trans.png';
   // public static ADDRESS = '11 Weymouth Street - London - UK';
